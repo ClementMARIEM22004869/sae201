@@ -15,10 +15,10 @@
    <top>
       <VBox prefHeight="109.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="43.0" prefWidth="600.0">
-               <children>
+            <HBox prefHeight="43.0" prefWidth="600.0" spacing="30.0">
+               <children >
                   <ImageView fx:id="image1" fitHeight="49.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label alignment="CENTER" prefHeight="47.0" prefWidth="378.0" text="Le site des séismes" textAlignment="JUSTIFY">
+                  <Label alignment="CENTER" prefHeight="47.0" prefWidth="378.0" text="Le site des séismes" textAlignment="JUSTIFY" >
                      <font>
                         <Font size="32.0" />
                      </font>
@@ -31,7 +31,7 @@
                   <Label prefHeight="17.0" prefWidth="668.0" text="Filtré par" textFill="WHITE" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: #279af1;">
+            <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="30.0" style="-fx-background-color: #279af1;">
                <children>
                   <Label text="Date">
                      <graphic>

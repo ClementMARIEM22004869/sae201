@@ -18,10 +18,11 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Image image = new Image(getClass().getResourceAsStream("Univ_Aix-Marseille_-_IUT.png"));
-        image2.setImage(image);
+        //Image image = new Image(getClass().getResourceAsStream("Univ_Aix-Marseille_-_IUT.png"));
+        //image2.setImage(image);
         Scene scene = new Scene(fxmlLoader.load(), 1700, 920);
         stage.setTitle("Seisme");
+        stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
     }
