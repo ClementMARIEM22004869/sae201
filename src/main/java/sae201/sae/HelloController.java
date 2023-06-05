@@ -40,11 +40,14 @@ public class HelloController {
             e.printStackTrace();
         }
 
+        int compteur = 0;
         for (String[] ligne : lignes) {
             for (String valeur : ligne) {
-                System.out.print(valeur + " ");
+                //System.out.print(valeur + " ");
+                compteur +=1;
             }
-            System.out.println();
+
         }
+        System.out.println(compteur + " séismes");
     }
 }

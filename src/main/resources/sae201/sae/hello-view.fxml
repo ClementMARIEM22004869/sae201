@@ -17,6 +17,7 @@
          <children>
             <HBox prefHeight="43.0" prefWidth="600.0" spacing="30.0">
                <children >
+                  <Button text="boutontest" onAction="#lireDonees"/>
                   <ImageView fx:id="image1" fitHeight="49.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" />
                   <Label alignment="CENTER" prefHeight="47.0" prefWidth="378.0" text="Le site des séismes" textAlignment="JUSTIFY" >
                      <font>
