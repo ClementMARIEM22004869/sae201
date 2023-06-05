@@ -13,7 +13,7 @@ public class HelloController {
     private Label welcomeText;
 
 
-
+/*
     public void ouvrirFichierCSV() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Ouvrir un fichier CSV");
@@ -25,6 +25,7 @@ public class HelloController {
         if (fichierCSV != null) {
             lireFichierCSV(fichierCSV);
         }
+
     }public void lireFichierCSV(File fichierCSV) {
         try (BufferedReader br = new BufferedReader(new FileReader(fichierCSV))) {
             String ligne;
@@ -40,9 +41,11 @@ public class HelloController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
 
 }
-
+*/
 
 }
