@@ -3,29 +3,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane fx:id="bdp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sae201.sae.HelloController">
+<BorderPane fx:id="" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sae201.sae.HelloController">
    <bottom>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" />
-            <Button mnemonicParsing="false" onAction="#lireDonees" text="BOUTON TEST NE PAS FAIRE ATTENTION" />
-         </children></VBox>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
    </center>
    <top>
       <VBox prefHeight="109.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="43.0" prefWidth="600.0">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fitHeight="31.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true" />
-                        <ImageView fitHeight="35.0" fitWidth="485.0" pickOnBounds="true" preserveRatio="true" />
-                     </children>
-                  </HBox>
+            <HBox prefHeight="43.0" prefWidth="600.0" spacing="30.0">
+               <children >
+                  <ImageView fx:id="image1" fitHeight="49.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label alignment="CENTER" prefHeight="47.0" prefWidth="378.0" text="Le site des séismes" textAlignment="JUSTIFY" >
+                     <font>
+                        <Font size="32.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="image2" fitHeight="47.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
             <HBox prefHeight="19.0" prefWidth="600.0" style="-fx-background-color: #453f78;">
@@ -33,25 +31,25 @@
                   <Label prefHeight="17.0" prefWidth="668.0" text="Filtré par" textFill="WHITE" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="10.0" style="-fx-background-color: #279af1;">
+            <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="30.0" style="-fx-background-color: #279af1;">
                <children>
                   <Label text="Date">
                      <graphic>
-                        <TextField id="date" prefHeight="24.0" prefWidth="56.0" />
+                        <TextField id="date" prefHeight="24.0" prefWidth="56.0" fx:id="date"/>
                      </graphic></Label>
                   <Label text="Localisation">
                      <graphic>
-                        <TextField prefHeight="24.0" prefWidth="61.0" />
+                        <TextField prefHeight="24.0" prefWidth="61.0" fx:id="localisation"/>
                      </graphic>
                   </Label>
                   <Label text="Coordonées">
                      <graphic>
-                        <TextField prefHeight="24.0" prefWidth="58.0" />
+                        <TextField prefHeight="24.0" prefWidth="58.0" fx:id="coordonnée"/>
                      </graphic>
                   </Label>
                   <Label text="Intensité">
                      <graphic>
-                        <TextField prefHeight="24.0" prefWidth="42.0" />
+                        <TextField prefHeight="24.0" prefWidth="42.0" fx:id="intensité"/>
                      </graphic>
                   </Label>
                </children>
