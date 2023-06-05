@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.io.BufferedReader;
@@ -22,27 +23,28 @@ public class HelloController {
     private Button btn;
     @FXML
     private BorderPane bdp;
+
     @FXML
-    public void lireDonees(){
+    public void lireDonees() {
         String csvFile = "src/main/resources/sae201/sae/donne.csv";
         String line;
-        String cvsSplitBy = ",";
-        VBox vbox = new VBox();
+        List<String[]> lignes = new ArrayList<>();
+
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) {
-                String[] values = line.split(cvsSplitBy);
-                System.out.println(line);
-                for (int i = 0; i < values.length; i++) {
-                    values[i] = values[i].replaceAll("\"", "");
-                }
-                for (int i = 0; i<values.length;i++){
-                    Label donneeLabel = new Label(values[i]);
-                    vbox.getChildren().add(donneeLabel);
-                }
+                line = line.replaceAll("\"", "");
+                String[] valeurs = line.split(",");
+                lignes.add(valeurs);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        bdp.setCenter(vbox);
+
+        for (String[] ligne : lignes) {
+            for (String valeur : ligne) {
+                System.out.print(valeur + " ");
+            }
+            System.out.println();
+        }
     }
 }
