@@ -3,6 +3,7 @@ package sae201.sae;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
@@ -23,6 +24,19 @@ public class HelloController {
     private Button btn;
     @FXML
     private BorderPane bdp;
+
+    @FXML
+    public TextField date;
+
+    @FXML
+    public TextField localisation;
+
+    @FXML
+    public TextField coordonnée;
+
+    @FXML
+    public TextField intensité;
+
     @FXML
     public void lireDonees(){
         String csvFile = "src/main/resources/sae201/sae/donne.csv";
@@ -46,5 +60,8 @@ public class HelloController {
         }
         bdp.setCenter(vbox);
     }
-
+    @FXML
+    public float nombreSeisme() {
+        return 4;
+    }
 }
