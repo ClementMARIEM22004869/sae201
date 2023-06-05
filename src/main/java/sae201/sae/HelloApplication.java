@@ -20,7 +20,7 @@ public class HelloApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         //Image image = new Image(getClass().getResourceAsStream("Univ_Aix-Marseille_-_IUT.png"));
         //image2.setImage(image);
-        Scene scene = new Scene(fxmlLoader.load(), 1700, 920);
+        Scene scene = new Scene(fxmlLoader.load(), 1400, 620);
         stage.setTitle("Seisme");
         stage.setResizable(false);
         stage.setScene(scene);

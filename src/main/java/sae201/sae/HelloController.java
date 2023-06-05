@@ -46,4 +46,5 @@ public class HelloController {
         }
         bdp.setCenter(vbox);
     }
+
 }
