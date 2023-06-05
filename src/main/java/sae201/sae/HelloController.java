@@ -44,5 +44,18 @@ public class HelloController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        VBox vbox = new VBox();
+
+        for (String[] Laligne : lignes) {
+            HBox hbox = new HBox();
+            for (String valeur : Laligne) {
+                Label label = new Label(valeur);
+                hbox.getChildren().add(label);
+            }
+            vbox.getChildren().add(hbox);
+        }
+
+        bdp.setCenter(vbox);
     }
+
 }
