@@ -23,28 +23,26 @@ public class HelloController {
     private Button btn;
     @FXML
     private BorderPane bdp;
-
+//lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans.
     @FXML
     public void lireDonees() {
         String csvFile = "src/main/resources/sae201/sae/donne.csv";
+        //ligne actuelle
         String line;
+        //le tableau de String
         List<String[]> lignes = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) {
+                //on enlève les ""
                 line = line.replaceAll("\"", "");
+                //on met dans le tableau de String valeurs les valeurs
                 String[] valeurs = line.split(",");
+                //on ajoute les valeurs dans le tableau de String
                 lignes.add(valeurs);
             }
         } catch (IOException e) {
             e.printStackTrace();
-        }
-
-        for (String[] ligne : lignes) {
-            for (String valeur : ligne) {
-                System.out.print(valeur + " ");
-            }
-            System.out.println();
         }
     }
 }

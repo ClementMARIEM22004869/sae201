@@ -10,15 +10,18 @@
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" onAction="#lireDonees" text="BOUTON DE TEST NE PAS FAIRE ATTENTION" />
+         </children></VBox>
    </center>
    <top>
       <VBox prefHeight="109.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <HBox prefHeight="43.0" prefWidth="600.0" spacing="30.0">
-               <children >
+               <children>
                   <ImageView fx:id="image1" fitHeight="49.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label alignment="CENTER" prefHeight="47.0" prefWidth="378.0" text="Le site des séismes" textAlignment="JUSTIFY" >
+                  <Label alignment="CENTER" prefHeight="47.0" prefWidth="378.0" text="Le site des séismes" textAlignment="JUSTIFY">
                      <font>
                         <Font size="32.0" />
                      </font>
@@ -35,21 +38,21 @@
                <children>
                   <Label text="Date">
                      <graphic>
-                        <TextField id="date" prefHeight="24.0" prefWidth="56.0" fx:id="date"/>
+                        <TextField id="date" fx:id="date" prefHeight="24.0" prefWidth="56.0" />
                      </graphic></Label>
                   <Label text="Localisation">
                      <graphic>
-                        <TextField prefHeight="24.0" prefWidth="61.0" fx:id="localisation"/>
+                        <TextField fx:id="localisation" prefHeight="24.0" prefWidth="61.0" />
                      </graphic>
                   </Label>
                   <Label text="Coordonées">
                      <graphic>
-                        <TextField prefHeight="24.0" prefWidth="58.0" fx:id="coordonnée"/>
+                        <TextField fx:id="coordonnée" prefHeight="24.0" prefWidth="58.0" />
                      </graphic>
                   </Label>
                   <Label text="Intensité">
                      <graphic>
-                        <TextField prefHeight="24.0" prefWidth="42.0" fx:id="intensité"/>
+                        <TextField fx:id="intensité" prefHeight="24.0" prefWidth="42.0" />
                      </graphic>
                   </Label>
                </children>
