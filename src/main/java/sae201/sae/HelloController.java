@@ -62,6 +62,6 @@ public class HelloController {
     }
     @FXML
     public float nombreSeisme() {
-        return 4;
+        return 5;
     }
 }
