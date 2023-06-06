@@ -136,7 +136,7 @@ public class HelloController {
         int compteur = 0;
         for (String[] ligne : donnees) {
             String region = "PYRENEES";
-            if (region == ligne[4]) {
+            if (ligne[4].contains(region)) {
                 compteur += 1;
             }
         }
