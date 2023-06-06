@@ -31,13 +31,15 @@ public class HelloApplication extends Application {
 
     private static FXMLLoader loader;
 
+    private static Scene scene;
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage){
         this.primaryStage = primaryStage;
         this.primaryStage.setTitle("Seisme");
 
         initRootLayout();
+        primaryStage.show();
     }
 
     public static void initRootLayout()  {
@@ -68,7 +70,7 @@ public class HelloApplication extends Application {
             });
 
             // Affiche la scène contenant le layout principal
-            Scene scene = new Scene(loader.load(), 1000, 900);
+            scene = new Scene(loader.load(), 1000, 900);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
