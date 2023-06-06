@@ -17,7 +17,7 @@
                <children>
                   <Button fx:id="fenetre1" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statistiques" />
                   <Button fx:id="fenetre2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#vga" style="-fx-background-color: #279af1;" text="Carte et Statistiques total" />
-                  <Button mnemonicParsing="false" onAction="#afficherDonnees" text="Recherche" />
+                  <Button mnemonicParsing="false" onAction="#rechercher" text="Recherche" />
                </children>
             </HBox>
             <TableView fx:id="tableView" nodeOrientation="LEFT_TO_RIGHT" prefHeight="705.0" prefWidth="800.0">
@@ -107,16 +107,16 @@
                <children>
                   <Label text="Date">
                      <graphic>
-                        <TextField id="date" fx:id="date" prefHeight="24.0" prefWidth="56.0" />
+                        <DatePicker fx:id="date" />
                      </graphic></Label>
                   <Label text="Localisation">
                      <graphic>
                         <TextField fx:id="localisation" prefHeight="24.0" prefWidth="61.0" />
                      </graphic>
                   </Label>
-                  <Label text="Coordonées">
+                  <Label text="Nom">
                      <graphic>
-                        <TextField fx:id="coordonnée" prefHeight="24.0" prefWidth="58.0" />
+                        <TextField fx:id="nom" prefHeight="24.0" prefWidth="58.0" />
                      </graphic>
                   </Label>
                   <Label text="Intensité">

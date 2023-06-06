@@ -3,23 +3,24 @@ package sae201.sae;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import org.w3c.dom.Text;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
 
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 import static sae201.sae.HelloApplication.initRootLayout;
 
@@ -58,7 +59,14 @@ public class HelloController {
     private TableColumn<String[], String> Y;
     @FXML
     private TableColumn<String[], String> longitude;
-
+    @FXML
+    private DatePicker date;
+    @FXML
+    private TextField localisation;
+    @FXML
+    private TextField nom;
+    @FXML
+    private TextField intensité;
     @FXML
     //lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans.
     public void lireDonnees() {
@@ -69,7 +77,7 @@ public class HelloController {
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) {
-                // Ignorer la première ligne (en-têtes des colonnes)
+                // Ignorer la première ligne (en têtes des colonnes)
                 if (isFirstLine) {
                     isFirstLine = false;
                     continue;
@@ -95,7 +103,7 @@ public class HelloController {
             e.printStackTrace();
         }
     }
-
+//afficher les données dans les colones correspondantes
     @FXML
     public void afficherDonnees() {
         lireDonnees();
@@ -112,6 +120,22 @@ public class HelloController {
         intensiteColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[10]));
 
         tableView.getItems().addAll(donnees);
+    }
+    @FXML
+    public void affichDonneeTrier(List<String[]> resultat) {
+        identifiantColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[0]));
+        dateColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[1]));
+        heureColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[2]));
+        nomColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[3]));
+        regionEpicentraleColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[4]));
+        chocColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[5]));
+        X.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[6]));
+        Y.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[7]));
+        latitude.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[8]));
+        longitude.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[9]));
+        intensiteColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[10]));
+
+        tableView.getItems().addAll(resultat);
     }
 
     //    public void rechercher(){
@@ -146,6 +170,55 @@ public class HelloController {
         }
         System.out.println(compteur + " séismes dans les Pyrénées");
     }
+    public List<String[]> rechercher() {
+        lireDonnees();
+        List<String[]> resultats = new ArrayList<>();
+
+        // Récupérer les valeurs saisies par l'utilisateur
+        String dateSelectionnee = (date.getValue() != null) ? date.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : null;
+        String localisationSelectionnee = localisation.getText();
+        String nomSelectionnee = nom.getText();
+
+        for (String[] valeurs : donnees) {
+            if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, nomSelectionnee)) {
+                resultats.add(valeurs);
+            }
+        }
+
+        affichDonneeTrier(resultats);
+        return resultats;
+    }
+
+
+    private boolean estCompatible(String[] valeurs, String dateSelectionnee, String localisation, String nom) {
+        // Vérifier la compatibilité avec la date sélectionnée
+        if (dateSelectionnee != null && !dateSelectionnee.isEmpty()) {
+            String valeurDate = valeurs[1];
+            if (!valeurDate.contains(dateSelectionnee)) {
+                return false; // L'entrée n'est pas compatible avec la date sélectionnée
+            }
+        }
+
+        // Vérifier la compatibilité avec la localisation
+        if (localisation != null && !localisation.isEmpty()) {
+            String valeurLocalisation = valeurs[4];
+            if (!valeurLocalisation.contains(localisation)) {
+                return false; // L'entrée n'est pas compatible avec la localisation
+            }
+        }
+
+        // Vérifier la compatibilité avec le nom
+        if (nom != null && !nom.isEmpty()) {
+            String valeurNom = valeurs[3];
+            if (!valeurNom.contains(nom)) {
+                return false; // L'entrée n'est pas compatible avec le nom
+            }
+        }
+
+        return true; // L'entrée est compatible avec toutes les valeurs saisies par l'utilisateur
+    }
+
+
     @FXML
     public void vga () {
         lireDonnees();
