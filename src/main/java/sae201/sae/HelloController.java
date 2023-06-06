@@ -135,6 +135,7 @@ public class HelloController {
         lireDonnees();
         int compteur = 0;
         double max = 0;
+        double min = 5;
         String region = "PYRENEES";
         for (String[] ligne : donnees) {
             if (ligne[4].contains(region)) {
@@ -145,11 +146,20 @@ public class HelloController {
                         max = currentMagnitude;
                     }
                 }
+                String minS = ligne[10].trim(); // Supprimer les espaces en début et fin de la chaîne
+                if (!minS.isEmpty()) {
+                    double currentMin = Double.parseDouble(minS);
+                    if (currentMin < min) {
+                        min = currentMin;
+                    }
+                }
                 compteur += 1;
             }
         }
         System.out.println("Nombre de séismes : " + compteur);
         System.out.println("Le plus gros séisme est de magnitude : " + max);
+        System.out.println("Le plus petit séisme est de magnitude : " + min);
+
     }
 
     @FXML
