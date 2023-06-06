@@ -1,6 +1,7 @@
 package sae201.sae;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -18,6 +19,8 @@ import java.util.List;
 
 
 import java.util.ArrayList;
+
+import static sae201.sae.HelloApplication.initRootLayout;
 
 public class HelloController {
     @FXML
@@ -118,4 +121,9 @@ public class HelloController {
         double moyenne = numérateur / dénominateur;
         System.out.println("Moyenne sur l'échelle Richter : " + moyenne);
     }
+
+    public void fenetre0(ActionEvent actionEvent) {initRootLayout();}
+    public void fenetre1(ActionEvent actionEvent) {initRootLayout();}
+    public void fenetre2(ActionEvent actionEvent) {initRootLayout();}
+    public void refresh(ActionEvent actionEvent) {initRootLayout();}
 }
