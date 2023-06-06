@@ -37,29 +37,44 @@
                         <PropertyValueFactory property="heure" />
                      </cellValueFactory>
                   </TableColumn>
-                  <TableColumn fx:id="intensiteColumn" prefWidth="73.0" text="Intensité">
-                     <cellValueFactory>
-                        <PropertyValueFactory property="intensite" />
-                     </cellValueFactory>
-                  </TableColumn>
-                  <TableColumn fx:id="qualiteIntensiteColumn" prefWidth="133.0" text="Qualité intensité">
-                     <cellValueFactory>
-                        <PropertyValueFactory property="qualiteIntensite" />
-                     </cellValueFactory>
-                  </TableColumn>
-                  <TableColumn fx:id="nomColumn" prefWidth="56.0" text="Nom">
+                  <TableColumn fx:id="nomColumn" prefWidth="73.0" text="Nom">
                      <cellValueFactory>
                         <PropertyValueFactory property="nom" />
                      </cellValueFactory>
                   </TableColumn>
-                  <TableColumn fx:id="regionEpicentraleColumn" prefWidth="153.0" text="Région épicentrale">
+                  <TableColumn fx:id="regionEpicentraleColumn" prefWidth="56.0" text="Région épicentrale">
                      <cellValueFactory>
-                        <PropertyValueFactory property="regionEpicentrale" />
+                        <PropertyValueFactory property="region" />
                      </cellValueFactory>
                   </TableColumn>
-                  <TableColumn fx:id="chocColumn" prefWidth="92.0" text="Choc">
+                  <TableColumn fx:id="chocColumn" prefWidth="84.0" text="Choc">
                      <cellValueFactory>
                         <PropertyValueFactory property="choc" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="X" prefWidth="84.0" text="X">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="X" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="Y" prefWidth="84.0" text="Y">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="Y" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="latitude" prefWidth="84.0" text="latitude">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="latitude" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="longitude" prefWidth="84.0" text="longitude">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="longitude" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="intensiteColumn" prefWidth="161.0" text="Intensité">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="intensite" />
                      </cellValueFactory>
                   </TableColumn>
                </columns>

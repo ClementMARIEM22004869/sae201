@@ -14,6 +14,7 @@ import javafx.scene.layout.VBox;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 
 
@@ -47,37 +48,64 @@ public class HelloController {
     @FXML
     private TableColumn<String[], String> chocColumn;
     @FXML
+    private TableColumn<String[], String> X;
+    @FXML
+    private TableColumn<String[], String> latitude;
+    @FXML
+    private TableColumn<String[], String> Y;
+    @FXML
+    private TableColumn<String[], String> longitude;
+    @FXML
     //lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans.
-    public void lireDonees() {
+    public void lireDonnees() {
         String csvFile = "src/main/resources/sae201/sae/donne.csv";
         //ligne actuelle
         String line;
+        boolean isFirstLine = true;
+
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) {
+                // Ignorer la première ligne (en-têtes des colonnes)
+                if (isFirstLine) {
+                    isFirstLine = false;
+                    continue;
+                }
+
                 //on enlève les ""
                 line = line.replaceAll("\"", "");
                 //on met dans le tableau de String valeurs les valeurs
                 String[] valeurs = line.split(",");
+                if (valeurs.length < 11) {
+                    valeurs = Arrays.copyOf(valeurs, 11);
+                    valeurs[10] = " ";
+                }
+
                 //on ajoute les valeurs dans le tableau de String
                 donnees.add(valeurs);
+
+                for (String v : valeurs) {
+                    System.out.println(v);
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-}
-@FXML
-    public void afficherDonnees() {
-        lireDonees();
+    }
 
+    @FXML
+    public void afficherDonnees() {
+        lireDonnees();
         identifiantColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[0]));
         dateColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[1]));
         heureColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[2]));
-        intensiteColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[3]));
-        qualiteIntensiteColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[4]));
-        nomColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[5]));
-        regionEpicentraleColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[6]));
-        chocColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[7]));
-        // Utilisez les autres méthodes setCellValueFactory pour les autres colonnes
+        nomColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[3]));
+        regionEpicentraleColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[4]));
+        chocColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[5]));
+        X.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[6]));
+        Y.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[7]));
+        latitude.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[8]));
+        longitude.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[9]));
+        intensiteColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[10]));
 
         tableView.getItems().addAll(donnees);
     }
