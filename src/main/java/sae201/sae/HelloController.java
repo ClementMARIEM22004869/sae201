@@ -134,14 +134,24 @@ public class HelloController {
     public void stats() {
         lireDonnees();
         int compteur = 0;
+        double magnitude = 0;
+        String region = "PYRENEES";
         for (String[] ligne : donnees) {
-            String region = "PYRENEES";
             if (ligne[4].contains(region)) {
+                String magnitudeString = ligne[10].trim(); // Supprimer les espaces en début et fin de la chaîne
+                if (!magnitudeString.isEmpty()) {
+                    double currentMagnitude = Double.parseDouble(magnitudeString);
+                    if (currentMagnitude > magnitude) {
+                        magnitude = currentMagnitude;
+                    }
+                }
                 compteur += 1;
             }
         }
-        System.out.println("Nombre de séisme : " + compteur);
+        System.out.println("Nombre de séismes : " + compteur);
+        System.out.println("Le plus gros séisme est de magnitude : " + magnitude);
     }
+
     @FXML
     public void vga () {
         lireDonnees();
