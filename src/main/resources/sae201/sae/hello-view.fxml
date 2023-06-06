@@ -45,7 +45,8 @@
             </HBox>
             <HBox prefHeight="19.0" prefWidth="600.0" style="-fx-background-color: #453f78;">
                <children>
-                  <Label prefHeight="17.0" prefWidth="668.0" text="Filtré par" textFill="WHITE" />
+                  <Label prefHeight="17.0" prefWidth="784.0" text="Filtré par" textFill="WHITE" />
+                  <Button fx:id="refresh" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="\@" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="30.0" style="-fx-background-color: #279af1;">
