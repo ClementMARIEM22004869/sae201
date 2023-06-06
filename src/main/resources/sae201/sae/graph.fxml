@@ -16,10 +16,19 @@
                     <children>
                         <Button fx:id="fenetre0" onAction="#fenetre0" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Retour" />
                         <Button fx:id="fenetre2" onAction="#fenetre2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statistiques total" />
-                  <Button id="recharge" mnemonicParsing="false" text="Recherche" />
+                        <Button id="recharge" mnemonicParsing="false" text="Recherche" />
                     </children>
                 </HBox>
-            </children></VBox>
+                <TableView fx:id="tableView">
+                    <columns>
+                        <TableColumn text="Date" />
+                        <TableColumn text="Localisation" />
+                        <TableColumn text="Coordonnées" />
+                        <TableColumn text="Intensité" />
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
     </center>
     <top>
         <VBox prefHeight="109.0" prefWidth="600.0" BorderPane.alignment="CENTER">
@@ -46,13 +55,14 @@
                         <Label text="Date">
                             <graphic>
                                 <TextField id="date" fx:id="date" prefHeight="24.0" prefWidth="56.0" />
-                            </graphic></Label>
+                            </graphic>
+                        </Label>
                         <Label text="Localisation">
                             <graphic>
                                 <TextField fx:id="localisation" prefHeight="24.0" prefWidth="61.0" />
                             </graphic>
                         </Label>
-                        <Label text="Coordonées">
+                        <Label text="Coordonnées">
                             <graphic>
                                 <TextField fx:id="coordonnée" prefHeight="24.0" prefWidth="58.0" />
                             </graphic>
