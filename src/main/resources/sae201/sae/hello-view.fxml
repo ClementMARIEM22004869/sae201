@@ -1,56 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="bdp" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sae201.sae.HelloController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sae201.sae.HelloController">
    <bottom>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <HBox alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="670.0" style="-fx-background-color: #453f78;" BorderPane.alignment="CENTER" />
    </bottom>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="800.0" spacing="20.0">
+               <children>
+                  <Button fx:id="fenetre1" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statistiques" />
+                  <Button fx:id="fenetre2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#vga" style="-fx-background-color: #279af1;" text="Carte et Statistiques total" />
+                  <Button mnemonicParsing="false" onAction="#afficherDonnees" text="Recherche" />
+               </children>
+            </HBox>
+            <TableView fx:id="tableView" nodeOrientation="LEFT_TO_RIGHT" prefHeight="705.0" prefWidth="800.0">
+               <columns>
+                  <TableColumn fx:id="identifiantColumn" prefWidth="93.0" text="Identifiant">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="identifiant" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="dateColumn" prefWidth="132.0" text="Date (AAAA/MM/JJ)">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="date" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="heureColumn" minWidth="0.0" prefWidth="67.0" text="Heure">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="heure" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="nomColumn" prefWidth="73.0" text="Nom">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="nom" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="regionEpicentraleColumn" prefWidth="56.0" text="Région épicentrale">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="region" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="chocColumn" prefWidth="84.0" text="Choc">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="choc" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="X" prefWidth="84.0" text="X">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="X" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="Y" prefWidth="84.0" text="Y">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="Y" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="latitude" prefWidth="84.0" text="latitude">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="latitude" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="longitude" prefWidth="161.0" text="longitude">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="longitude" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="intensiteColumn" prefWidth="161.0" text="Intensité">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="intensite" />
+                     </cellValueFactory>
+                  </TableColumn>
+               </columns>
+            </TableView>
+
+
+         </children></VBox>
    </center>
    <top>
       <VBox prefHeight="109.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="43.0" prefWidth="600.0" spacing="30.0">
-               <children >
-                  <Button text="boutontest" onAction="#lireDonees"/>
+            <HBox alignment="CENTER" prefHeight="43.0" prefWidth="600.0" spacing="30.0">
+               <children>
                   <ImageView fx:id="image1" fitHeight="49.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label alignment="CENTER" prefHeight="47.0" prefWidth="378.0" text="Le site des séismes" textAlignment="JUSTIFY" >
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="465.0" text="Le site des séismes">
                      <font>
                         <Font size="32.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="image2" fitHeight="47.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="image2" fitHeight="49.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
             <HBox prefHeight="19.0" prefWidth="600.0" style="-fx-background-color: #453f78;">
                <children>
-                  <Label prefHeight="17.0" prefWidth="668.0" text="Filtré par" textFill="WHITE" />
+                  <Label prefHeight="17.0" prefWidth="784.0" text="Filtré par" textFill="WHITE" />
+                  <Button fx:id="refresh" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="\@" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="30.0" style="-fx-background-color: #279af1;">
                <children>
                   <Label text="Date">
                      <graphic>
-                        <TextField id="date" prefHeight="24.0" prefWidth="56.0" fx:id="date"/>
+                        <TextField id="date" fx:id="date" prefHeight="24.0" prefWidth="56.0" />
                      </graphic></Label>
                   <Label text="Localisation">
                      <graphic>
-                        <TextField prefHeight="24.0" prefWidth="61.0" fx:id="localisation"/>
+                        <TextField fx:id="localisation" prefHeight="24.0" prefWidth="61.0" />
                      </graphic>
                   </Label>
                   <Label text="Coordonées">
                      <graphic>
-                        <TextField prefHeight="24.0" prefWidth="58.0" fx:id="coordonnée"/>
+                        <TextField fx:id="coordonnée" prefHeight="24.0" prefWidth="58.0" />
                      </graphic>
                   </Label>
                   <Label text="Intensité">
                      <graphic>
-                        <TextField prefHeight="24.0" prefWidth="42.0" fx:id="intensité"/>
+                        <TextField fx:id="intensité" prefHeight="24.0" prefWidth="42.0" />
                      </graphic>
                   </Label>
                </children>
