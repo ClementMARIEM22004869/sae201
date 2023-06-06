@@ -155,21 +155,37 @@ public class HelloController {
 //        }
 //
 //    }
-    public void stats () {
+    public void stats() {
         lireDonnees();
         int compteur = 0;
+        double max = 0;
+        double min = 5;
+        String region = "PYRENEES";
         for (String[] ligne : donnees) {
-            String regionEpicentrale = ligne[4];
-            if (regionEpicentrale.equalsIgnoreCase("PYRENEES")) {
-                for (String valeur : ligne) {
-                    System.out.print(valeur + " ");
+            if (ligne[4].contains(region)) {
+                String magnitudeString = ligne[10].trim(); // Supprimer les espaces en début et fin de la chaîne
+                if (!magnitudeString.isEmpty()) {
+                    double currentMagnitude = Double.parseDouble(magnitudeString);
+                    if (currentMagnitude > max) {
+                        max = currentMagnitude;
+                    }
                 }
-                System.out.println();
-                compteur++;
+                String minS = ligne[10].trim(); // Supprimer les espaces en début et fin de la chaîne
+                if (!minS.isEmpty()) {
+                    double currentMin = Double.parseDouble(minS);
+                    if (currentMin < min) {
+                        min = currentMin;
+                    }
+                }
+                compteur += 1;
             }
         }
-        System.out.println(compteur + " séismes dans les Pyrénées");
+        System.out.println("Nombre de séismes : " + compteur);
+        System.out.println("Le plus gros séisme est de magnitude : " + max);
+        System.out.println("Le plus petit séisme est de magnitude : " + min);
+
     }
+
     public List<String[]> rechercher() {
         lireDonnees();
         List<String[]> resultats = new ArrayList<>();
