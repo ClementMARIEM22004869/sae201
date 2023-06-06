@@ -30,21 +30,7 @@ public class HelloApplication extends Application {
     private static Stage primaryStage;
 
     private static FXMLLoader loader;
-    /*
-    @Override
-    public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        FXMLLoader fxmlLoader2 = new FXMLLoader(HelloApplication.class.getResource("graph.fxml"));
-        //Image image = new Image(getClass().getResourceAsStream("Univ_Aix-Marseille_-_IUT.png"));
-        //image2.setImage(image);
-        Scene scene = new Scene(fxmlLoader.load(), 1000, 900);
-        stage.setTitle("Seisme");
-        stage.setResizable(false);
-        stage.setScene(scene);
-        stage.show();
-    }
 
-     */
 
     @Override
     public void start(Stage primaryStage) {
@@ -60,13 +46,13 @@ public class HelloApplication extends Application {
             fenetre1 = new Button();
             fenetre2 = new Button();
             refresh = new Button();
+
             // Charge le fichier FXML du layout principal
             loader = new FXMLLoader();
             loader.setLocation(HelloApplication.class.getResource("hello-view.fxml"));
 
             refresh.setOnAction(event -> {
                 refreshScene();
-                loader.setLocation(HelloApplication.class.getResource("hello-view.fxml"));
             });
 
             fenetre0.setOnAction(event -> {
@@ -81,7 +67,7 @@ public class HelloApplication extends Application {
 
             fenetre2.setOnAction(event -> {
                 refreshScene();
-                loader.setLocation(HelloApplication.class.getResource("hello-view.fxml"));
+                loader.setLocation(HelloApplication.class.getResource("graphtt.fxml"));
             });
 
             // Affiche la scène contenant le layout principal
