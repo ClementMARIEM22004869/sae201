@@ -70,7 +70,7 @@ public class HelloApplication extends Application {
             });
 
             // Affiche la scène contenant le layout principal
-            scene = new Scene(loader.load(), 1000, 900);
+            scene = new Scene(loader.load(), 800, 600);
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {

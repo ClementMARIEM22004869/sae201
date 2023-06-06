@@ -131,20 +131,16 @@ public class HelloController {
 //        }
 //
 //    }
-    public void stats () {
+    public void stats() {
         lireDonnees();
         int compteur = 0;
         for (String[] ligne : donnees) {
-            String regionEpicentrale = ligne[4];
-            if (regionEpicentrale.equalsIgnoreCase("PYRENEES")) {
-                for (String valeur : ligne) {
-                    System.out.print(valeur + " ");
-                }
-                System.out.println();
-                compteur++;
+            String region = "PYRENEES";
+            if (region == ligne[4]) {
+                compteur += 1;
             }
         }
-        System.out.println(compteur + " séismes dans les Pyrénées");
+        System.out.println("Nombre de séisme : " + compteur);
     }
     @FXML
     public void vga () {
