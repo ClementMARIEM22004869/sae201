@@ -46,6 +46,7 @@ public class HelloController {
     private TableColumn<String[], String> regionEpicentraleColumn;
     @FXML
     private TableColumn<String[], String> chocColumn;
+
     @FXML
     //lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans.
     public void lireDonees() {
@@ -64,8 +65,9 @@ public class HelloController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-}
-@FXML
+    }
+
+    @FXML
     public void afficherDonnees() {
         lireDonees();
 
@@ -73,25 +75,47 @@ public class HelloController {
         dateColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[1]));
         heureColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[2]));
         intensiteColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[3]));
-        qualiteIntensiteColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[4]));
-        nomColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[5]));
-        regionEpicentraleColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[6]));
-        chocColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[7]));
-        // Utilisez les autres méthodes setCellValueFactory pour les autres colonnes
 
         tableView.getItems().addAll(donnees);
     }
 
 
-    public void stats(){
+    public void stats() {
         int compteur = 0;
         for (String[] ligne : donnees) {
             for (String valeur : ligne) {
                 //System.out.print(valeur + " ");
-                compteur +=1;
+                compteur += 1;
             }
 
         }
         System.out.println(compteur + " séismes");
+    }
+
+    @FXML
+    public void vga() {
+        lireDonees();
+        int dénominateur = 0;
+        double numérateur = 0;
+
+        for (String[] ligne : donnees) {
+            if (ligne.length > 10) {
+                String magnitudeString = ligne[9];
+                if (!magnitudeString.isEmpty()) {
+                    double magnitude = Double.parseDouble(magnitudeString);
+                    System.out.println("Magnitude du séisme : " + magnitude);
+                    numérateur += magnitude;
+                } else {
+                    System.out.println("La magnitude du séisme est une chaîne vide.");
+                }
+            } else {
+                System.out.println("La ligne ne contient pas suffisamment d'éléments pour la magnitude.");
+            }
+
+            dénominateur++;
+        }
+
+        double moyenne = numérateur / dénominateur;
+        System.out.println("Moyenne sur l'échelle Richter : " + moyenne);
     }
 }
