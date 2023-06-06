@@ -84,15 +84,19 @@ public class HelloController {
 
 
     public void stats() {
+        lireDonees();
         int compteur = 0;
         for (String[] ligne : donnees) {
-            for (String valeur : ligne) {
-                //System.out.print(valeur + " ");
-                compteur += 1;
+            String regionEpicentrale = ligne[4];
+            if (regionEpicentrale.equalsIgnoreCase("PYRENEES")) {
+                for (String valeur : ligne) {
+                    System.out.print(valeur + " ");
+                }
+                System.out.println();
+                compteur++;
             }
-
         }
-        System.out.println(compteur + " séismes");
+        System.out.println(compteur + " séismes dans les Pyrénées");
     }
 
     @FXML
@@ -103,7 +107,7 @@ public class HelloController {
 
         for (String[] ligne : donnees) {
             if (ligne.length > 10) {
-                String magnitudeString = ligne[9];
+                String magnitudeString = ligne[10];
                 if (!magnitudeString.isEmpty()) {
                     double magnitude = Double.parseDouble(magnitudeString);
                     System.out.println("Magnitude du séisme : " + magnitude);
