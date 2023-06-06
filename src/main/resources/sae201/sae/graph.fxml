@@ -16,6 +16,7 @@
                     <children>
                         <Button mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statisques" />
                         <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statisques total" />
+                  <Button mnemonicParsing="false" text="Recherche" />
                     </children>
                 </HBox>
             </children></VBox>

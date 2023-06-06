@@ -14,9 +14,9 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="800.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statisques" />
-                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statisques total" />
-                  <Button mnemonicParsing="false" onAction="#afficherDonnees" text="Bouton de test" />
+                  <Button mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statistiques" />
+                  <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statistiques total" />
+                  <Button mnemonicParsing="false" onAction="#afficherDonnees" text="Recherche" />
                </children>
             </HBox>
             <TableView fx:id="tableView" nodeOrientation="LEFT_TO_RIGHT" prefHeight="712.0" prefWidth="800.0">
