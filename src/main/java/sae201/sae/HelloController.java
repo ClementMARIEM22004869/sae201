@@ -23,25 +23,27 @@ public class HelloController {
     private Button btn;
     @FXML
     private BorderPane bdp;
-
+    @FXML
+    private List<String[]> donnees;
     @FXML
     public void lireDonees() {
         String csvFile = "src/main/resources/sae201/sae/donne.csv";
         String line;
-        List<String[]> lignes = new ArrayList<>();
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) {
                 line = line.replaceAll("\"", "");
                 String[] valeurs = line.split(",");
-                lignes.add(valeurs);
+                donnees.add(valeurs);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+}
+    public void stats(){
         int compteur = 0;
-        for (String[] ligne : lignes) {
+        for (String[] ligne : donnees) {
             for (String valeur : ligne) {
                 //System.out.print(valeur + " ");
                 compteur +=1;
