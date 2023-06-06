@@ -3,6 +3,8 @@ package sae201.sae;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -21,26 +23,49 @@ public class HelloController {
     private Label welcomeText;
     @FXML
     private Button btn;
+
     @FXML
-    private BorderPane bdp;
+    //le tableau de String
+    private List<String[]> donnees = new ArrayList<String[]>();
     @FXML
-    private List<String[]> donnees;
+    private TableView<String[]> tableView;
     @FXML
+    //lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans.
     public void lireDonees() {
         String csvFile = "src/main/resources/sae201/sae/donne.csv";
+        //ligne actuelle
         String line;
-
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) {
+                //on enlève les ""
                 line = line.replaceAll("\"", "");
+                //on met dans le tableau de String valeurs les valeurs
                 String[] valeurs = line.split(",");
+                //on ajoute les valeurs dans le tableau de String
                 donnees.add(valeurs);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 }
+    public void afficherDonnees() {
+        lireDonees();
+
+        // Créer les colonnes du TableView
+        TableColumn<String[], String> identifiantColumn = new TableColumn<>("Identifiant");
+        TableColumn<String[], String> dateColumn = new TableColumn<>("Date (AAAA/MM/JJ)");
+        // Ajouter les autres colonnes...
+
+        // Ajouter les colonnes au TableView
+        tableView.getColumns().addAll(identifiantColumn, dateColumn, );
+
+        // Ajouter les données au TableView
+        for (String[] ligne : donnees) {
+            tableView.getItems().add(ligne);
+        }
+    }
+
+
     public void stats(){
         int compteur = 0;
         for (String[] ligne : donnees) {
