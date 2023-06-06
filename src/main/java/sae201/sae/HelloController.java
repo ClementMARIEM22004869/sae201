@@ -1,5 +1,6 @@
 package sae201.sae;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -48,16 +49,34 @@ public class HelloController {
             e.printStackTrace();
         }
 }
+@FXML
     public void afficherDonnees() {
         lireDonees();
 
         // Créer les colonnes du TableView
         TableColumn<String[], String> identifiantColumn = new TableColumn<>("Identifiant");
         TableColumn<String[], String> dateColumn = new TableColumn<>("Date (AAAA/MM/JJ)");
-        // Ajouter les autres colonnes...
+        TableColumn<String[], String> heureColumn = new TableColumn<>("Heure");
+        TableColumn<String[], String> intensiteColumn = new TableColumn<>("Intensité");
+        TableColumn<String[], String> qualiteIntensiteColumn = new TableColumn<>("Qualité intensité");
+        TableColumn<String[], String> nomColumn = new TableColumn<>("Nom");
+        TableColumn<String[], String> regionEpicentraleColumn = new TableColumn<>("Région épicentrale");
+        TableColumn<String[], String> chocColumn = new TableColumn<>("Choc");
 
         // Ajouter les colonnes au TableView
-        tableView.getColumns().addAll(identifiantColumn, dateColumn, );
+        tableView.getColumns().addAll(identifiantColumn, dateColumn, heureColumn,
+                intensiteColumn, qualiteIntensiteColumn, nomColumn,
+                regionEpicentraleColumn, chocColumn);
+
+        // Définir comment extraire les valeurs des cellules pour chaque colonne
+        identifiantColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[0]));
+        dateColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[1]));
+        heureColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[2]));
+        intensiteColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[3]));
+        qualiteIntensiteColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[4]));
+        nomColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[5]));
+        regionEpicentraleColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[6]));
+        chocColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[7]));
 
         // Ajouter les données au TableView
         for (String[] ligne : donnees) {

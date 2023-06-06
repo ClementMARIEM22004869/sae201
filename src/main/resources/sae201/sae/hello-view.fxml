@@ -16,18 +16,12 @@
                <children>
                   <Button mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statisques" />
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statisques total" />
+                  <Button mnemonicParsing="false" onAction="#afficherDonnees" text="Bouton de test" />
                </children>
             </HBox>
-            <TableView nodeOrientation="LEFT_TO_RIGHT" prefHeight="712.0" prefWidth="800.0">
+            <TableView fx:id="tableView" nodeOrientation="LEFT_TO_RIGHT" prefHeight="712.0" prefWidth="800.0">
               <columns>
-                <TableColumn prefWidth="93.0" text="Identifiant" />
-                <TableColumn prefWidth="132.0" text="Date (AAAA/MM/JJ)" />
-                 <TableColumn minWidth="0.0" prefWidth="67.0" text="Heure" />
-                 <TableColumn prefWidth="73.0" text="Intensité" />
-                 <TableColumn prefWidth="133.0" text="Qualité intensité" />
-                 <TableColumn prefWidth="56.0" text="Nom" />
-                 <TableColumn prefWidth="153.0" text="Région épicentrale" />
-                 <TableColumn prefWidth="92.0" text="Choc" />
+
               </columns>
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
