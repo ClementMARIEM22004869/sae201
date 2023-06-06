@@ -101,9 +101,8 @@ public class HelloController {
         initRootLayout();
     }
 
-    public void fenetre0(ActionEvent actionEvent) {
-        initRootLayout();
-    }
+    public void fenetre0(ActionEvent actionEvent) { initRootLayout(); }
+
     public void fenetre1(ActionEvent actionEvent) {
         initRootLayout();
     }

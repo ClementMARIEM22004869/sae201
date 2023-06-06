@@ -56,17 +56,14 @@ public class HelloApplication extends Application {
             });
 
             fenetre0.setOnAction(event -> {
-                refreshScene();
                 loader.setLocation(HelloApplication.class.getResource("hello-view.fxml"));
             });
 
             fenetre1.setOnAction(event -> {
-                refreshScene();
                 loader.setLocation(HelloApplication.class.getResource("graph.fxml"));
             });
 
             fenetre2.setOnAction(event -> {
-                refreshScene();
                 loader.setLocation(HelloApplication.class.getResource("graphtt.fxml"));
             });
 
