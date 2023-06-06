@@ -156,9 +156,13 @@ public class HelloController {
             if (ligne.length > 10) {
                 String magnitudeString = ligne[10];
                 if (!magnitudeString.isEmpty()) {
-                    double magnitude = Double.parseDouble(magnitudeString);
-                    System.out.println("Magnitude du séisme : " + magnitude);
-                    numérateur += magnitude;
+                    try {
+                        double magnitude = Double.parseDouble(magnitudeString);
+                        System.out.println("Magnitude du séisme : " + magnitude);
+                        numérateur += magnitude;
+                    } catch (NumberFormatException e) {
+                        System.out.println("La magnitude du séisme n'est pas un nombre valide : " + magnitudeString);
+                    }
                 } else {
                     System.out.println("La magnitude du séisme est une chaîne vide.");
                 }
