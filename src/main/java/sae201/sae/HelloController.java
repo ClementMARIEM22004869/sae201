@@ -110,7 +110,23 @@ public class HelloController {
         tableView.getItems().addAll(donnees);
     }
 
-
+//    public void rechercher(){
+//        public List<String[]> rechercher(String motRecherche) {
+//            List<String[]> resultats = new ArrayList<>();
+//
+//            for (String[] valeurs : donnees) {
+//                for (String valeur : valeurs) {
+//                    if (valeur.contains(motRecherche)) {
+//                        resultats.add(valeurs);
+//                        break; // Arrêter la recherche dès qu'une correspondance est trouvée
+//                    }
+//                }
+//            }
+//
+//            return resultats;
+//        }
+//
+//    }
     public void stats(){
         int compteur = 0;
         for (String[] ligne : donnees) {
