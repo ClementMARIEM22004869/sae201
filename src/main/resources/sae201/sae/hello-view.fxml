@@ -13,9 +13,9 @@
          </children></HBox>
    </bottom>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" >
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" spacing="30.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="800.0" spacing="20.0">
                <children>
                   <Button mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statisques" />
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statisques total" />
@@ -26,10 +26,10 @@
    <top>
       <VBox prefHeight="109.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="43.0" prefWidth="600.0" spacing="30.0">
+            <HBox alignment="CENTER" prefHeight="43.0" prefWidth="600.0" spacing="30.0">
                <children>
                   <ImageView fx:id="image1" fitHeight="49.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label alignment="CENTER" prefHeight="47.0" prefWidth="465.0" text="Le site des séismes" textAlignment="JUSTIFY">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="465.0" text="Le site des séismes">
                      <font>
                         <Font size="32.0" />
                      </font>
