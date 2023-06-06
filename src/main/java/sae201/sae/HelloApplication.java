@@ -3,9 +3,12 @@ package sae201.sae;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,6 +18,14 @@ public class HelloApplication extends Application {
     private ImageView image1;
     @FXML
     public ImageView image2;
+    @FXML
+    public Button fenetre0;
+    @FXML
+    public Button fenetre1;
+    @FXML
+    public Button fenetre2;
+    private Stage primaryStage;
+    /*
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
@@ -26,6 +37,57 @@ public class HelloApplication extends Application {
         stage.setResizable(false);
         stage.setScene(scene);
         stage.show();
+    }
+
+     */
+
+    @Override
+    public void start(Stage primaryStage) {
+        this.primaryStage = primaryStage;
+        this.primaryStage.setTitle("Exemple de rafraîchissement de scène");
+
+        initRootLayout();
+    }
+
+    private void initRootLayout() {
+        try {
+            // Charge le fichier FXML du layout principal
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(HelloApplication.class.getResource("hello-view.fxml"));
+            Parent rootLayout = loader.load();
+
+            fenetre0.setOnAction(event -> refreshScene());
+            rootLayout.getChildren().add(fenetre0);
+
+            fenetre1.setOnAction(event -> refreshScene());
+            rootLayout.getChildren().add(fenetre0);
+
+            fenetre2.setOnAction(event -> refreshScene());
+            rootLayout.getChildren().add(fenetre0);
+
+            // Affiche la scène contenant le layout principal
+            Scene scene = new Scene(rootLayout);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void refreshScene() {
+        try {
+            // Charge le fichier FXML de la nouvelle page à afficher
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(HelloApplication.class.getResource("graph.fxml"));
+            AnchorPane newPage = loader.load();
+
+            // Met à jour la scène avec la nouvelle page
+            Scene scene = new Scene(newPage);
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {

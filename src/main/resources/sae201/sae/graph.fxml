@@ -14,8 +14,9 @@
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="800.0" spacing="20.0">
                     <children>
-                        <Button mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statisques" />
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statisques total" />
+                        <Button fx:id="fenetre0" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Retour" />
+                        <Button fx:id="fenetre2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statistiques total" />
+                  <Button id="recharge" mnemonicParsing="false" text="Recherche" />
                     </children>
                 </HBox>
             </children></VBox>
