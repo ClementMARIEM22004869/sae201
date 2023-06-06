@@ -41,7 +41,7 @@ public class HelloApplication extends Application {
         initRootLayout();
         primaryStage.show();
     }
-
+//
     public static void initRootLayout()  {
         try {
             fenetre0 = new Button();
