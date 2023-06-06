@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -14,25 +15,72 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="800.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" onAction="#stats" style="-fx-background-color: #279af1;" text="Carte et Statisques" />
-                  <Button alignment="CENTER" onAction="#vga" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statisques total" />
+                  <Button fx:id="fenetre1" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statistiques" />
+                  <Button fx:id="fenetre2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#vga" style="-fx-background-color: #279af1;" text="Carte et Statistiques total" />
+                  <Button mnemonicParsing="false" onAction="#afficherDonnees" text="Recherche" />
                </children>
             </HBox>
-            <TableView nodeOrientation="LEFT_TO_RIGHT" prefHeight="712.0" prefWidth="800.0">
-              <columns>
-                <TableColumn prefWidth="93.0" text="Identifiant" />
-                <TableColumn prefWidth="132.0" text="Date (AAAA/MM/JJ)" />
-                 <TableColumn minWidth="0.0" prefWidth="67.0" text="Heure" />
-                 <TableColumn prefWidth="73.0" text="Intensité" />
-                 <TableColumn prefWidth="133.0" text="Qualité intensité" />
-                 <TableColumn prefWidth="56.0" text="Nom" />
-                 <TableColumn prefWidth="153.0" text="Région épicentrale" />
-                 <TableColumn prefWidth="92.0" text="Choc" />
-              </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
+            <TableView fx:id="tableView" nodeOrientation="LEFT_TO_RIGHT" prefHeight="705.0" prefWidth="800.0">
+               <columns>
+                  <TableColumn fx:id="identifiantColumn" prefWidth="93.0" text="Identifiant">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="identifiant" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="dateColumn" prefWidth="132.0" text="Date (AAAA/MM/JJ)">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="date" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="heureColumn" minWidth="0.0" prefWidth="67.0" text="Heure">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="heure" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="nomColumn" prefWidth="73.0" text="Nom">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="nom" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="regionEpicentraleColumn" prefWidth="56.0" text="Région épicentrale">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="region" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="chocColumn" prefWidth="84.0" text="Choc">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="choc" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="X" prefWidth="84.0" text="X">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="X" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="Y" prefWidth="84.0" text="Y">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="Y" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="latitude" prefWidth="84.0" text="latitude">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="latitude" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="longitude" prefWidth="161.0" text="longitude">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="longitude" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="intensiteColumn" prefWidth="161.0" text="Intensité">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="intensite" />
+                     </cellValueFactory>
+                  </TableColumn>
+               </columns>
             </TableView>
+
+
          </children></VBox>
    </center>
    <top>
