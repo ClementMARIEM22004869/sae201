@@ -20,16 +20,16 @@ public class HelloApplication extends Application {
     @FXML
     public ImageView image2;
     @FXML
-    public Button refresh;
+    public static Button refresh;
     @FXML
-    public Button fenetre0;
+    public static Button fenetre0;
     @FXML
-    public Button fenetre1;
+    public static Button fenetre1;
     @FXML
-    public Button fenetre2;
-    private Stage primaryStage;
+    public static Button fenetre2;
+    private static Stage primaryStage;
 
-    private FXMLLoader loader;
+    private static FXMLLoader loader;
     /*
     @Override
     public void start(Stage stage) throws IOException {
@@ -54,7 +54,7 @@ public class HelloApplication extends Application {
         initRootLayout();
     }
 
-    private void initRootLayout() {
+    public static void initRootLayout()  {
         try {
             fenetre0 = new Button();
             fenetre1 = new Button();
@@ -93,7 +93,7 @@ public class HelloApplication extends Application {
         }
     }
 
-    private void refreshScene() {
+    private static void refreshScene() {
         try {
             // Charge le fichier FXML de la nouvelle page à afficher
             BorderPane newPage = loader.load();

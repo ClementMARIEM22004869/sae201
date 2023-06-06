@@ -1,6 +1,7 @@
 package sae201.sae;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -19,12 +20,13 @@ import java.util.List;
 
 import java.util.ArrayList;
 
+import static sae201.sae.HelloApplication.initRootLayout;
+
 public class HelloController {
     @FXML
     private Label welcomeText;
     @FXML
     private Button btn;
-
     @FXML
     //le tableau de String
     private List<String[]> donnees = new ArrayList<String[]>();
@@ -93,5 +95,20 @@ public class HelloController {
 
         }
         System.out.println(compteur + " séismes");
+    }
+
+    public void refresh(ActionEvent actionEvent) {
+        initRootLayout();
+    }
+
+    public void fenetre0(ActionEvent actionEvent) {
+        initRootLayout();
+    }
+    public void fenetre1(ActionEvent actionEvent) {
+        initRootLayout();
+    }
+
+    public void fenetre2(ActionEvent actionEvent) {
+        initRootLayout();
     }
 }
