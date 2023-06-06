@@ -18,7 +18,7 @@
                   <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statisques total" />
                </children>
             </HBox>
-            <TableView nodeOrientation="LEFT_TO_RIGHT" prefHeight="200.0" prefWidth="200.0">
+            <TableView nodeOrientation="LEFT_TO_RIGHT" prefHeight="712.0" prefWidth="800.0">
               <columns>
                 <TableColumn prefWidth="93.0" text="Identifiant" />
                 <TableColumn prefWidth="132.0" text="Date (AAAA/MM/JJ)" />
