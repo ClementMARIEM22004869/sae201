@@ -31,6 +31,22 @@ public class HelloController {
     @FXML
     private TableView<String[]> tableView;
     @FXML
+    private TableColumn<String[], String> identifiantColumn;
+    @FXML
+    private TableColumn<String[], String> dateColumn;
+    @FXML
+    private TableColumn<String[], String> heureColumn;
+    @FXML
+    private TableColumn<String[], String> intensiteColumn;
+    @FXML
+    private TableColumn<String[], String> qualiteIntensiteColumn;
+    @FXML
+    private TableColumn<String[], String> nomColumn;
+    @FXML
+    private TableColumn<String[], String> regionEpicentraleColumn;
+    @FXML
+    private TableColumn<String[], String> chocColumn;
+    @FXML
     //lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans.
     public void lireDonees() {
         String csvFile = "src/main/resources/sae201/sae/donne.csv";
@@ -53,22 +69,6 @@ public class HelloController {
     public void afficherDonnees() {
         lireDonees();
 
-        // Créer les colonnes du TableView
-        TableColumn<String[], String> identifiantColumn = new TableColumn<>("Identifiant");
-        TableColumn<String[], String> dateColumn = new TableColumn<>("Date (AAAA/MM/JJ)");
-        TableColumn<String[], String> heureColumn = new TableColumn<>("Heure");
-        TableColumn<String[], String> intensiteColumn = new TableColumn<>("Intensité");
-        TableColumn<String[], String> qualiteIntensiteColumn = new TableColumn<>("Qualité intensité");
-        TableColumn<String[], String> nomColumn = new TableColumn<>("Nom");
-        TableColumn<String[], String> regionEpicentraleColumn = new TableColumn<>("Région épicentrale");
-        TableColumn<String[], String> chocColumn = new TableColumn<>("Choc");
-
-        // Ajouter les colonnes au TableView
-        tableView.getColumns().addAll(identifiantColumn, dateColumn, heureColumn,
-                intensiteColumn, qualiteIntensiteColumn, nomColumn,
-                regionEpicentraleColumn, chocColumn);
-
-        // Définir comment extraire les valeurs des cellules pour chaque colonne
         identifiantColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[0]));
         dateColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[1]));
         heureColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[2]));
@@ -77,11 +77,9 @@ public class HelloController {
         nomColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[5]));
         regionEpicentraleColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[6]));
         chocColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[7]));
+        // Utilisez les autres méthodes setCellValueFactory pour les autres colonnes
 
-        // Ajouter les données au TableView
-        for (String[] ligne : donnees) {
-            tableView.getItems().add(ligne);
-        }
+        tableView.getItems().addAll(donnees);
     }
 
 

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -19,14 +20,52 @@
                   <Button mnemonicParsing="false" onAction="#afficherDonnees" text="Bouton de test" />
                </children>
             </HBox>
-            <TableView fx:id="tableView" nodeOrientation="LEFT_TO_RIGHT" prefHeight="712.0" prefWidth="800.0">
-              <columns>
-
-              </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
+            <TableView fx:id="tableView" nodeOrientation="LEFT_TO_RIGHT" prefHeight="705.0" prefWidth="800.0">
+               <columns>
+                  <TableColumn fx:id="identifiantColumn" prefWidth="93.0" text="Identifiant">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="identifiant" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="dateColumn" prefWidth="132.0" text="Date (AAAA/MM/JJ)">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="date" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="heureColumn" minWidth="0.0" prefWidth="67.0" text="Heure">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="heure" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="intensiteColumn" prefWidth="73.0" text="Intensité">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="intensite" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="qualiteIntensiteColumn" prefWidth="133.0" text="Qualité intensité">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="qualiteIntensite" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="nomColumn" prefWidth="56.0" text="Nom">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="nom" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="regionEpicentraleColumn" prefWidth="153.0" text="Région épicentrale">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="regionEpicentrale" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="chocColumn" prefWidth="92.0" text="Choc">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="choc" />
+                     </cellValueFactory>
+                  </TableColumn>
+               </columns>
             </TableView>
+
+
          </children></VBox>
    </center>
    <top>
