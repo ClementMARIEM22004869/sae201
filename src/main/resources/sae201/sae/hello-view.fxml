@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.control.cell.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sae201.sae.HelloController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sae201.sae.HelloController">
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="670.0" style="-fx-background-color: #453f78;" BorderPane.alignment="CENTER" />
    </bottom>
@@ -86,21 +95,37 @@
    <top>
       <VBox prefHeight="109.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="43.0" prefWidth="600.0" spacing="30.0">
+            <HBox alignment="CENTER" prefHeight="26.0" prefWidth="746.0" spacing="30.0">
                <children>
-                  <ImageView fx:id="image1" fitHeight="49.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="465.0" text="Le site des séismes">
+                  <ImageView fx:id="image1" fitHeight="56.0" fitWidth="74.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@SisAix.png" />
+                     </image></ImageView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="59.0" prefWidth="499.0" text="Sis Aix" underline="true">
                      <font>
-                        <Font size="32.0" />
+                        <Font name="Bangla MN" size="32.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
                   </Label>
-                  <ImageView fx:id="image2" fitHeight="49.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="image2" fitHeight="58.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Univ_Aix-Marseille_-_IUT.png" />
+                     </image></ImageView>
                </children>
             </HBox>
             <HBox prefHeight="19.0" prefWidth="600.0" style="-fx-background-color: #453f78;">
                <children>
-                  <Label prefHeight="17.0" prefWidth="784.0" text="Filtré par" textFill="WHITE" />
-                  <Button fx:id="refresh" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="\@" />
+                  <Label prefHeight="17.0" prefWidth="784.0" text=" Filtrer par" textFill="WHITE" />
+                  <ImageView accessibleRole="BUTTON" fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Refresh.png" />
+                     </image>
+                  </ImageView>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="30.0" style="-fx-background-color: #279af1;">
