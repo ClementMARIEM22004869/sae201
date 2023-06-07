@@ -121,12 +121,32 @@ public class HelloController {
         //on ajoute les données dans le TableView
         tableView.getItems().addAll(resultat);
     }
+
+    //fonction pour rechercher et filtrer
+    public List<String[]> rechercher() {
+        lireDonnees();
+        List<String[]> resultats = new ArrayList<>();
+        resultats.clear();//on clear l'ancien tableau au où
+        // Récupérer les valeurs saisies par l'utilisateur (prend en compte la casse)
+        String dateSelectionnee = (date.getValue() != null) ? date.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : null;
+        String localisationSelectionnee = localisation.getText().toUpperCase();
+        String nomSelectionnee = nom.getText().toUpperCase();
+        String intensiteSelectionnee = intensite.getText().toUpperCase();
+        //parcours des données et récupération des bonnes
+        for (String[] valeurs : donnees) {
+            if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, nomSelectionnee, intensiteSelectionnee)) {
+                resultats.add(valeurs);
+            }
+        }
+        affichDonnee(resultats);
+        return resultats;
+    }
     public void stats() {
         lireDonnees();
         int compteur = 0;
         double max = 0;
         double min = 5;
-        String region = "PYRENEES";
+        String region = localisation.getText().toUpperCase();;
         for (String[] ligne : donnees) {
             if (ligne[4].contains(region)) {
                 String magnitudeString = ligne[10].trim(); // Supprimer les espaces en début et fin de la chaîne
@@ -146,29 +166,10 @@ public class HelloController {
                 compteur += 1;
             }
         }
-        System.out.println("Nombre de séismes : " + compteur);
-        System.out.println("Le plus gros séisme est de magnitude : " + max);
-        System.out.println("Le plus petit séisme est de magnitude : " + min);
+        System.out.println("Nombre de séismes en "+region+" : " + compteur);
+        System.out.println("Le plus gros séisme en "+ region + " est de magnitude : " + max);
+        System.out.println("Le plus petit séisme en "+region+" est de magnitude : " + min);
 
-    }
-    //fonction pour rechercher et filtrer
-    public List<String[]> rechercher() {
-        lireDonnees();
-        List<String[]> resultats = new ArrayList<>();
-        resultats.clear();//on clear l'ancien tableau au où
-        // Récupérer les valeurs saisies par l'utilisateur (prend en compte la casse)
-        String dateSelectionnee = (date.getValue() != null) ? date.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : null;
-        String localisationSelectionnee = localisation.getText().toUpperCase();
-        String nomSelectionnee = nom.getText().toUpperCase();
-        String intensiteSelectionnee = intensite.getText().toUpperCase();
-        //parcours des données et récupération des bonnes
-        for (String[] valeurs : donnees) {
-            if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, nomSelectionnee, intensiteSelectionnee)) {
-                resultats.add(valeurs);
-            }
-        }
-        affichDonnee(resultats);
-        return resultats;
     }
 
 //fonction pour vérifier si les valeurs sont compatibles avec les entrées utilisateur
