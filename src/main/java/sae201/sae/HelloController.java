@@ -143,33 +143,34 @@ public class HelloController {
     }
     public void stats() {
         lireDonnees();
+        String dateSelectionnee = (date.getValue() != null) ? date.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : null;
+        String localisationSelectionnee = localisation.getText().toUpperCase();
+        String nomSelectionnee = nom.getText().toUpperCase();
+        String intensiteSelectionnee = intensite.getText().toUpperCase();
+
         int compteur = 0;
-        double max = 0;
-        double min = 5;
-        String region = localisation.getText().toUpperCase();;
+        double maxMagnitude = Double.MIN_VALUE;
+        double minMagnitude = Double.MAX_VALUE;
+
         for (String[] ligne : donnees) {
-            if (ligne[4].contains(region)) {
+            if (estCompatible(ligne, dateSelectionnee, localisationSelectionnee, nomSelectionnee, intensiteSelectionnee)) {
                 String magnitudeString = ligne[10].trim(); // Supprimer les espaces en début et fin de la chaîne
                 if (!magnitudeString.isEmpty()) {
                     double currentMagnitude = Double.parseDouble(magnitudeString);
-                    if (currentMagnitude > max) {
-                        max = currentMagnitude;
+                    if (currentMagnitude > maxMagnitude) {
+                        maxMagnitude = currentMagnitude;
+                    }
+                    if (currentMagnitude < minMagnitude) {
+                        minMagnitude = currentMagnitude;
                     }
                 }
-                String minS = ligne[10].trim(); // Supprimer les espaces en début et fin de la chaîne
-                if (!minS.isEmpty()) {
-                    double currentMin = Double.parseDouble(minS);
-                    if (currentMin < min) {
-                        min = currentMin;
-                    }
-                }
-                compteur += 1;
+                compteur++;
             }
         }
-        System.out.println("Nombre de séismes en "+region+" : " + compteur);
-        System.out.println("Le plus gros séisme en "+ region + " est de magnitude : " + max);
-        System.out.println("Le plus petit séisme en "+region+" est de magnitude : " + min);
 
+        System.out.println("Nombre de séismes : " + compteur);
+        System.out.println("Séisme minimum : " + minMagnitude);
+        System.out.println("Séisme maximum : " + maxMagnitude);
     }
 
 //fonction pour vérifier si les valeurs sont compatibles avec les entrées utilisateur
