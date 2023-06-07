@@ -35,8 +35,19 @@
                 </HBox>
                 <HBox prefHeight="19.0" prefWidth="600.0" style="-fx-background-color: #453f78;">
                     <children>
-                        <Label prefHeight="17.0" prefWidth="668.0" text="Filtré par" textFill="WHITE" />
-                        <Button fx:id="refresh" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" onAction="#refresh" text="\@" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="78.0" text=" Filtrer par" textFill="WHITE" />
+                        <Button mnemonicParsing="false">
+                            <graphic>
+                                <ImageView id="Reload" accessibleRole="BUTTON" fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@Refresh.png" />
+                                    </image>
+                                    <cursor>
+                                        <Cursor fx:constant="WAIT" />
+                                    </cursor>
+                                </ImageView>
+                            </graphic>
+                        </Button>
                     </children>
                 </HBox>
             </children>

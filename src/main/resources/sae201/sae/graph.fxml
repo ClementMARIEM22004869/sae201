@@ -125,15 +125,19 @@
                 </HBox>
                 <HBox prefHeight="19.0" prefWidth="600.0" style="-fx-background-color: #453f78;">
                     <children>
-                        <Label prefHeight="17.0" prefWidth="668.0" text="Filtrer par" textFill="WHITE" />
-                        <ImageView accessibleRole="BUTTON" fitHeight="24.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@Refresh.png" />
-                            </image>
-                            <HBox.margin>
-                                <Insets left="50.0" />
-                            </HBox.margin>
-                        </ImageView>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="78.0" text=" Filtrer par" textFill="WHITE" />
+                        <Button mnemonicParsing="false">
+                            <graphic>
+                                <ImageView id="Reload" accessibleRole="BUTTON" fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@Refresh.png" />
+                                    </image>
+                                    <cursor>
+                                        <Cursor fx:constant="WAIT" />
+                                    </cursor>
+                                </ImageView>
+                            </graphic>
+                        </Button>
                     </children>
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="30.0" style="-fx-background-color: #279af1;">
