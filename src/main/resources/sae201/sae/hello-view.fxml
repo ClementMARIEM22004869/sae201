@@ -121,7 +121,7 @@
                   </Label>
                   <Label text="Intensité">
                      <graphic>
-                        <TextField fx:id="intensité" prefHeight="24.0" prefWidth="42.0" />
+                        <TextField fx:id="intensite" prefHeight="24.0" prefWidth="42.0" />
                      </graphic>
                   </Label>
                </children>

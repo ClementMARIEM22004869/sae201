@@ -66,7 +66,7 @@ public class HelloController {
     @FXML
     private TextField nom;
     @FXML
-    private TextField intensité;
+    private TextField intensite;
     @FXML
     //lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans.
     public void lireDonnees() {
@@ -105,8 +105,8 @@ public class HelloController {
     }
 //afficher les données dans les colones correspondantes
     @FXML
-    public void afficherDonnees() {
-        lireDonnees();
+    public void affichDonnee(List<String[]> resultat) {
+        tableView.getItems().clear();//on clear l'ancienne entrée.
         identifiantColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[0]));
         dateColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[1]));
         heureColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[2]));
@@ -118,43 +118,9 @@ public class HelloController {
         latitude.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[8]));
         longitude.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[9]));
         intensiteColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[10]));
-
-        tableView.getItems().addAll(donnees);
-    }
-    @FXML
-    public void affichDonneeTrier(List<String[]> resultat) {
-        identifiantColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[0]));
-        dateColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[1]));
-        heureColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[2]));
-        nomColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[3]));
-        regionEpicentraleColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[4]));
-        chocColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[5]));
-        X.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[6]));
-        Y.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[7]));
-        latitude.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[8]));
-        longitude.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[9]));
-        intensiteColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[10]));
-
+        //on ajoute les données dans le TableView
         tableView.getItems().addAll(resultat);
     }
-
-    //    public void rechercher(){
-//        public List<String[]> rechercher(String motRecherche) {
-//            List<String[]> resultats = new ArrayList<>();
-//
-//            for (String[] valeurs : donnees) {
-//                for (String valeur : valeurs) {
-//                    if (valeur.contains(motRecherche)) {
-//                        resultats.add(valeurs);
-//                        break; // Arrêter la recherche dès qu'une correspondance est trouvée
-//                    }
-//                }
-//            }
-//
-//            return resultats;
-//        }
-//
-//    }
     public void stats() {
         lireDonnees();
         int compteur = 0;
@@ -185,28 +151,29 @@ public class HelloController {
         System.out.println("Le plus petit séisme est de magnitude : " + min);
 
     }
-
+    //fonction pour rechercher et filtrer
     public List<String[]> rechercher() {
         lireDonnees();
         List<String[]> resultats = new ArrayList<>();
-
-        // Récupérer les valeurs saisies par l'utilisateur
+        resultats.clear();//on clear l'ancien tableau au où
+        // Récupérer les valeurs saisies par l'utilisateur (prend en compte la casse)
         String dateSelectionnee = (date.getValue() != null) ? date.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : null;
-        String localisationSelectionnee = localisation.getText();
-        String nomSelectionnee = nom.getText();
-
+        String localisationSelectionnee = localisation.getText().toUpperCase();
+        String nomSelectionnee = nom.getText().toUpperCase();
+        String intensiteSelectionnee = intensite.getText().toUpperCase();
+        //parcours des données et récupération des bonnes
         for (String[] valeurs : donnees) {
-            if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, nomSelectionnee)) {
+            if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, nomSelectionnee, intensiteSelectionnee)) {
                 resultats.add(valeurs);
             }
         }
-
-        affichDonneeTrier(resultats);
+        affichDonnee(resultats);
         return resultats;
     }
 
-
-    private boolean estCompatible(String[] valeurs, String dateSelectionnee, String localisation, String nom) {
+//fonction pour vérifier si les valeurs sont compatibles avec les entrées utilisateur
+//on vérifie pour chaque entrée si la valeur est compatible si une des valeurs n'est pas compatible on renvoie false.
+    private boolean estCompatible(String[] valeurs, String dateSelectionnee, String localisation, String nom, String intensite) {
         // Vérifier la compatibilité avec la date sélectionnée
         if (dateSelectionnee != null && !dateSelectionnee.isEmpty()) {
             String valeurDate = valeurs[1];
@@ -214,7 +181,6 @@ public class HelloController {
                 return false; // L'entrée n'est pas compatible avec la date sélectionnée
             }
         }
-
         // Vérifier la compatibilité avec la localisation
         if (localisation != null && !localisation.isEmpty()) {
             String valeurLocalisation = valeurs[4];
@@ -222,7 +188,6 @@ public class HelloController {
                 return false; // L'entrée n'est pas compatible avec la localisation
             }
         }
-
         // Vérifier la compatibilité avec le nom
         if (nom != null && !nom.isEmpty()) {
             String valeurNom = valeurs[3];
@@ -230,7 +195,12 @@ public class HelloController {
                 return false; // L'entrée n'est pas compatible avec le nom
             }
         }
-
+        if (intensite != null && !intensite.isEmpty()) {
+            String valeurIntensite = valeurs[10];
+            if (!valeurIntensite.contains(intensite)) {
+                return false; // L'entrée n'est pas compatible avec le nom
+            }
+        }
         return true; // L'entrée est compatible avec toutes les valeurs saisies par l'utilisateur
     }
 
