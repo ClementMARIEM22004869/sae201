@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sae201.sae.HelloController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sae201.sae.scene3Controller">
     <bottom>
         <HBox alignment="CENTER_RIGHT" prefHeight="36.0" prefWidth="670.0" style="-fx-background-color: #453f78;" BorderPane.alignment="CENTER" />
     </bottom>
@@ -14,7 +14,7 @@
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="800.0" spacing="20.0">
                     <children>
-                        <Button fx:id="fenetre0" mnemonicParsing="false" onAction="#fenetre0" style="-fx-background-color: #279af1;" text="Retour" />
+                        <Button fx:id="fenetre0" onAction="#fenetre0c" mnemonicParsing="false"  style="-fx-background-color: #279af1;" text="Retour"/>
                     </children>
                 </HBox>
             </children></VBox>
@@ -33,18 +33,15 @@
                         <ImageView fx:id="image2" fitHeight="49.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" />
                     </children>
                 </HBox>
-                <HBox prefHeight="19.0" prefWidth="600.0" style="-fx-background-color: #453f78;">
+                <HBox alignment="CENTER" prefHeight="19.0" prefWidth="600.0" style="-fx-background-color: #453f78;">
                     <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="78.0" text=" Filtrer par" textFill="WHITE" />
-                        <Button mnemonicParsing="false">
+                        <Button fx:id="refresh" mnemonicParsing="false" onAction="#refreshc">
                             <graphic>
                                 <ImageView id="Reload" accessibleRole="BUTTON" fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@Refresh.png" />
                                     </image>
-                                    <cursor>
-                                        <Cursor fx:constant="WAIT" />
-                                    </cursor>
                                 </ImageView>
                             </graphic>
                         </Button>

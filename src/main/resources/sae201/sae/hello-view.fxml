@@ -17,11 +17,11 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="800.0" spacing="20.0">
                <children>
-                  <Button fx:id="fenetre1" mnemonicParsing="false" onAction="#stats" style="-fx-background-color: #279af1;" text="Carte et Statistiques">
+                  <Button fx:id="fenetre1" mnemonicParsing="false" onAction="#fenetre1c" style="-fx-background-color: #279af1;" text="Carte et Statistiques">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button fx:id="fenetre2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#vga" style="-fx-background-color: #279af1;" text="Carte et Statistiques total">
+                  <Button fx:id="fenetre2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#fenetre2c" style="-fx-background-color: #279af1;" text="Carte et Statistiques total">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
@@ -123,7 +123,7 @@
             <HBox alignment="CENTER" prefHeight="19.0" prefWidth="600.0" style="-fx-background-color: #453f78;">
                <children>
                   <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="78.0" text=" Filtrer par" textFill="WHITE" />
-                  <Button mnemonicParsing="false">
+                  <Button fx:id="refresh" mnemonicParsing="false" onAction="#refreshc">
                      <graphic>
                         <ImageView id="Reload" accessibleRole="BUTTON" fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                            <image>

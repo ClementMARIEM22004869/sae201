@@ -3,6 +3,7 @@ package sae201.sae;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
@@ -17,12 +18,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 
 import java.util.ArrayList;
 import java.util.Locale;
-
-import static sae201.sae.HelloApplication.initRootLayout;
 
 public class HelloController {
     @FXML
@@ -206,7 +212,6 @@ public class HelloController {
         return true; // L'entrée est compatible avec toutes les valeurs saisies par l'utilisateur
     }
 
-
     @FXML
     public void vga () {
         lireDonnees();
@@ -238,8 +243,52 @@ public class HelloController {
         System.out.println("Moyenne sur l'échelle Richter : " + moyenne);
     }
 
-    public void fenetre0(ActionEvent actionEvent) {initRootLayout();}
-    public void fenetre1(ActionEvent actionEvent) {initRootLayout();}
-    public void fenetre2(ActionEvent actionEvent) {initRootLayout();}
-    public void refresh(ActionEvent actionEvent) {initRootLayout();}
+    @FXML
+    private Button fenetre1;
+
+    @FXML
+    private Button fenetre2;
+
+    @FXML
+    private Button refresh;
+
+    @FXML
+    public void fenetre1c (ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("graph.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) fenetre1.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void fenetre2c (ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("graphtt.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) fenetre2.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void refreshc (ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
