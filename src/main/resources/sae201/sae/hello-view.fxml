@@ -15,9 +15,9 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="800.0" spacing="20.0">
                <children>
-                  <Button fx:id="fenetre1" onAction="#fenetre1" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statistiques" />
-                  <Button fx:id="fenetre2" onAction="#fenetre2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" style="-fx-background-color: #279af1;" text="Carte et Statistiques total" />
-                  <Button mnemonicParsing="false" onAction="#afficherDonnees" text="Recherche" />
+                  <Button fx:id="fenetre1" mnemonicParsing="false" onAction="#stats" style="-fx-background-color: #279af1;" text="Carte et Statistiques" />
+                  <Button fx:id="fenetre2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#vga" style="-fx-background-color: #279af1;" text="Carte et Statistiques total" />
+                  <Button mnemonicParsing="false" onAction="#rechercher" text="Recherche" />
                </children>
             </HBox>
             <TableView fx:id="tableView" nodeOrientation="LEFT_TO_RIGHT" prefHeight="705.0" prefWidth="800.0">
@@ -37,29 +37,44 @@
                         <PropertyValueFactory property="heure" />
                      </cellValueFactory>
                   </TableColumn>
-                  <TableColumn fx:id="intensiteColumn" prefWidth="73.0" text="Intensité">
-                     <cellValueFactory>
-                        <PropertyValueFactory property="intensite" />
-                     </cellValueFactory>
-                  </TableColumn>
-                  <TableColumn fx:id="qualiteIntensiteColumn" prefWidth="133.0" text="Qualité intensité">
-                     <cellValueFactory>
-                        <PropertyValueFactory property="qualiteIntensite" />
-                     </cellValueFactory>
-                  </TableColumn>
-                  <TableColumn fx:id="nomColumn" prefWidth="56.0" text="Nom">
+                  <TableColumn fx:id="nomColumn" prefWidth="73.0" text="Nom">
                      <cellValueFactory>
                         <PropertyValueFactory property="nom" />
                      </cellValueFactory>
                   </TableColumn>
-                  <TableColumn fx:id="regionEpicentraleColumn" prefWidth="153.0" text="Région épicentrale">
+                  <TableColumn fx:id="regionEpicentraleColumn" prefWidth="56.0" text="Région épicentrale">
                      <cellValueFactory>
-                        <PropertyValueFactory property="regionEpicentrale" />
+                        <PropertyValueFactory property="region" />
                      </cellValueFactory>
                   </TableColumn>
-                  <TableColumn fx:id="chocColumn" prefWidth="92.0" text="Choc">
+                  <TableColumn fx:id="chocColumn" prefWidth="84.0" text="Choc">
                      <cellValueFactory>
                         <PropertyValueFactory property="choc" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="X" prefWidth="84.0" text="X">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="X" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="Y" prefWidth="84.0" text="Y">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="Y" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="latitude" prefWidth="84.0" text="latitude">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="latitude" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="longitude" prefWidth="161.0" text="longitude">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="longitude" />
+                     </cellValueFactory>
+                  </TableColumn>
+                  <TableColumn fx:id="intensiteColumn" prefWidth="161.0" text="Intensité">
+                     <cellValueFactory>
+                        <PropertyValueFactory property="intensite" />
                      </cellValueFactory>
                   </TableColumn>
                </columns>
@@ -85,23 +100,23 @@
             <HBox prefHeight="19.0" prefWidth="600.0" style="-fx-background-color: #453f78;">
                <children>
                   <Label prefHeight="17.0" prefWidth="784.0" text="Filtré par" textFill="WHITE" />
-                  <Button fx:id="refresh" onAction="#refresh" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="\@" />
+                  <Button fx:id="refresh" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="\@" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="30.0" style="-fx-background-color: #279af1;">
                <children>
                   <Label text="Date">
                      <graphic>
-                        <TextField id="date" fx:id="date" prefHeight="24.0" prefWidth="56.0" />
+                        <DatePicker fx:id="date" />
                      </graphic></Label>
                   <Label text="Localisation">
                      <graphic>
                         <TextField fx:id="localisation" prefHeight="24.0" prefWidth="61.0" />
                      </graphic>
                   </Label>
-                  <Label text="Coordonées">
+                  <Label text="Nom">
                      <graphic>
-                        <TextField fx:id="coordonnée" prefHeight="24.0" prefWidth="58.0" />
+                        <TextField fx:id="nom" prefHeight="24.0" prefWidth="58.0" />
                      </graphic>
                   </Label>
                   <Label text="Intensité">
