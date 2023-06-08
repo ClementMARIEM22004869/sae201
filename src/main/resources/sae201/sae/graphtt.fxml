@@ -32,7 +32,7 @@
                      <image>
                         <Image url="@SisAix.png" />
                      </image></ImageView>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="465.0" text="Sis Aix" underline="true">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="465.0" text="" underline="true">
                             <font>
                                 <Font name="Bangla MN" size="32.0" />
                             </font>

@@ -18,8 +18,8 @@ import java.io.IOException;
 
             primaryStage.setTitle("Seisme");
             primaryStage.setScene(scene);
-            primaryStage.setWidth(900);
-            primaryStage.setHeight(800);
+            primaryStage.setWidth(1000);
+            primaryStage.setHeight(950);
             primaryStage.show();
         }
         public static void main(String[] args) {
