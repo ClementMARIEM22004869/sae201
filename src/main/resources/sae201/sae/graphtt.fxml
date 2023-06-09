@@ -5,6 +5,9 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.XYChart?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sae201.sae.scene3Controller">
     <bottom>
@@ -31,13 +34,12 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                        <PieChart />
-                        <Label text="Label" />
+                        <PieChart fx:id="camembert2" title="fdf" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                      <children>
-                        <LineChart prefHeight="247.0" prefWidth="400.0">
+                        <LineChart fx:id="linechart" prefHeight="247.0" prefWidth="400.0" title="gfgf">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
@@ -45,12 +47,11 @@
                             <NumberAxis side="LEFT" />
                           </yAxis>
                         </LineChart>
-                        <Label text="Label" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                      <children>
-                        <BarChart>
+                        <BarChart title="dfsfds">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
@@ -58,12 +59,11 @@
                             <NumberAxis side="LEFT" />
                           </yAxis>
                         </BarChart>
-                        <Label text="Label" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <StackedBarChart>
+                        <StackedBarChart title="gfxgf">
                           <xAxis>
                             <CategoryAxis side="BOTTOM" />
                           </xAxis>
@@ -71,7 +71,6 @@
                             <NumberAxis side="LEFT" />
                           </yAxis>
                         </StackedBarChart>
-                        <Label text="Label" />
                      </children>
                   </VBox>
                </children>

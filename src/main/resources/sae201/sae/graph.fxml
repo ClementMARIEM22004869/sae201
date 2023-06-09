@@ -43,26 +43,24 @@
                     <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
-                              <LineChart>
+                              <LineChart title="sdfs">
                                   <xAxis>
-                                      <CategoryAxis side="BOTTOM" />
+                                      <CategoryAxis label="hvgv" side="BOTTOM" />
                                   </xAxis>
                                   <yAxis>
                                       <NumberAxis side="LEFT" />
                                   </yAxis>
                               </LineChart>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="35.0" text="Label" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                      <children>
-                        <PieChart />
-                        <Label alignment="CENTER" contentDisplay="CENTER" text="Label" />
+                        <PieChart fx:id="camembert" title="aze" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                      <children>
-                              <BarChart>
+                              <BarChart title="ara">
                                   <xAxis>
                                       <CategoryAxis side="BOTTOM" />
                                   </xAxis>
@@ -70,12 +68,11 @@
                                       <NumberAxis side="LEFT" />
                                   </yAxis>
                               </BarChart>
-                        <Label text="Label" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                              <StackedBarChart>
+                              <StackedBarChart title="trer">
                                   <xAxis>
                                       <CategoryAxis side="BOTTOM" />
                                   </xAxis>
@@ -83,7 +80,6 @@
                                       <NumberAxis side="LEFT" />
                                   </yAxis>
                               </StackedBarChart>
-                        <Label text="Label" />
                      </children>
                   </VBox>
                     </children>

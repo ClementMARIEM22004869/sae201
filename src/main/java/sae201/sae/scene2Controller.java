@@ -1,11 +1,14 @@
 package sae201.sae;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
@@ -19,6 +22,20 @@ public class scene2Controller {
 
     @FXML
     private Button refresh;
+
+    @FXML
+    private PieChart camembert;
+
+    @FXML
+    public void initialize() {
+        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
+                new PieChart.Data("Catégorie 1", 30),
+                new PieChart.Data("Catégorie 2", 20),
+                new PieChart.Data("Catégorie 3", 50)
+        );
+        camembert.setData(pieChartData);
+
+    }
 
     @FXML
     public void fenetre0c(ActionEvent event) {
