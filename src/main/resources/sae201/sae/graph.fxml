@@ -30,7 +30,7 @@
                             </HBox.margin></Button>
                     </children>
                 </HBox>
-                <GridPane>
+                <GridPane alignment="CENTER">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -41,7 +41,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                      <children>
                               <LineChart>
                                   <xAxis>
@@ -51,16 +51,16 @@
                                       <NumberAxis side="LEFT" />
                                   </yAxis>
                               </LineChart>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="16.0" prefWidth="407.0" text="Label" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="35.0" text="Label" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                      <children>
                         <PieChart />
-                        <Label text="Label" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" text="Label" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                      <children>
                               <BarChart>
                                   <xAxis>
@@ -73,7 +73,7 @@
                         <Label text="Label" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                               <StackedBarChart>
                                   <xAxis>
@@ -83,6 +83,7 @@
                                       <NumberAxis side="LEFT" />
                                   </yAxis>
                               </StackedBarChart>
+                        <Label text="Label" />
                      </children>
                   </VBox>
                     </children>
