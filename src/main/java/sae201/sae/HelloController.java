@@ -3,6 +3,7 @@ package sae201.sae;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.Border;
 import javafx.scene.layout.BorderPane;
@@ -17,12 +18,17 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.List;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.stage.Stage;
 
 
 import java.util.ArrayList;
 import java.util.Locale;
-
-import static sae201.sae.HelloApplication.initRootLayout;
 
 public class HelloController {
     @FXML
@@ -66,7 +72,7 @@ public class HelloController {
     @FXML
     private TextField nom;
     @FXML
-    private TextField intensité;
+    private TextField intensite;
     @FXML
     //lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans.
     public void lireDonnees() {
@@ -105,8 +111,8 @@ public class HelloController {
     }
 //afficher les données dans les colones correspondantes
     @FXML
-    public void afficherDonnees() {
-        lireDonnees();
+    public void affichDonnee(List<String[]> resultat) {
+        tableView.getItems().clear();//on clear l'ancienne entrée.
         identifiantColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[0]));
         dateColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[1]));
         heureColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[2]));
@@ -118,95 +124,64 @@ public class HelloController {
         latitude.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[8]));
         longitude.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[9]));
         intensiteColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[10]));
-
-        tableView.getItems().addAll(donnees);
-    }
-    @FXML
-    public void affichDonneeTrier(List<String[]> resultat) {
-        identifiantColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[0]));
-        dateColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[1]));
-        heureColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[2]));
-        nomColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[3]));
-        regionEpicentraleColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[4]));
-        chocColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[5]));
-        X.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[6]));
-        Y.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[7]));
-        latitude.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[8]));
-        longitude.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[9]));
-        intensiteColumn.setCellValueFactory(data -> new SimpleStringProperty(data.getValue()[10]));
-
+        //on ajoute les données dans le TableView
         tableView.getItems().addAll(resultat);
     }
 
-    //    public void rechercher(){
-//        public List<String[]> rechercher(String motRecherche) {
-//            List<String[]> resultats = new ArrayList<>();
-//
-//            for (String[] valeurs : donnees) {
-//                for (String valeur : valeurs) {
-//                    if (valeur.contains(motRecherche)) {
-//                        resultats.add(valeurs);
-//                        break; // Arrêter la recherche dès qu'une correspondance est trouvée
-//                    }
-//                }
-//            }
-//
-//            return resultats;
-//        }
-//
-//    }
-    public void stats() {
-        lireDonnees();
-        int compteur = 0;
-        double max = 0;
-        double min = 5;
-        String region = "PYRENEES";
-        for (String[] ligne : donnees) {
-            if (ligne[4].contains(region)) {
-                String magnitudeString = ligne[10].trim(); // Supprimer les espaces en début et fin de la chaîne
-                if (!magnitudeString.isEmpty()) {
-                    double currentMagnitude = Double.parseDouble(magnitudeString);
-                    if (currentMagnitude > max) {
-                        max = currentMagnitude;
-                    }
-                }
-                String minS = ligne[10].trim(); // Supprimer les espaces en début et fin de la chaîne
-                if (!minS.isEmpty()) {
-                    double currentMin = Double.parseDouble(minS);
-                    if (currentMin < min) {
-                        min = currentMin;
-                    }
-                }
-                compteur += 1;
-            }
-        }
-        System.out.println("Nombre de séismes : " + compteur);
-        System.out.println("Le plus gros séisme est de magnitude : " + max);
-        System.out.println("Le plus petit séisme est de magnitude : " + min);
-
-    }
-
+    //fonction pour rechercher et filtrer
     public List<String[]> rechercher() {
         lireDonnees();
         List<String[]> resultats = new ArrayList<>();
-
-        // Récupérer les valeurs saisies par l'utilisateur
+        resultats.clear();//on clear l'ancien tableau au où
+        // Récupérer les valeurs saisies par l'utilisateur (prend en compte la casse)
         String dateSelectionnee = (date.getValue() != null) ? date.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : null;
-        String localisationSelectionnee = localisation.getText();
-        String nomSelectionnee = nom.getText();
-
+        String localisationSelectionnee = localisation.getText().toUpperCase();
+        String nomSelectionnee = nom.getText().toUpperCase();
+        String intensiteSelectionnee = intensite.getText().toUpperCase();
+        //parcours des données et récupération des bonnes
         for (String[] valeurs : donnees) {
-            if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, nomSelectionnee)) {
+            if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, nomSelectionnee, intensiteSelectionnee)) {
                 resultats.add(valeurs);
             }
         }
-
-        affichDonneeTrier(resultats);
+        affichDonnee(resultats);
         return resultats;
     }
+    public void stats() {
+        lireDonnees();
+        String dateSelectionnee = (date.getValue() != null) ? date.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : null;
+        String localisationSelectionnee = localisation.getText().toUpperCase();
+        String nomSelectionnee = nom.getText().toUpperCase();
+        String intensiteSelectionnee = intensite.getText().toUpperCase();
 
+        int compteur = 0;
+        double maxMagnitude = Double.MIN_VALUE;
+        double minMagnitude = Double.MAX_VALUE;
 
-    private boolean estCompatible(String[] valeurs, String dateSelectionnee, String localisation, String nom) {
+        for (String[] ligne : donnees) {
+            if (estCompatible(ligne, dateSelectionnee, localisationSelectionnee, nomSelectionnee, intensiteSelectionnee)) {
+                String magnitudeString = ligne[10].trim(); // Supprimer les espaces en début et fin de la chaîne
+                if (!magnitudeString.isEmpty()) {
+                    double currentMagnitude = Double.parseDouble(magnitudeString);
+                    if (currentMagnitude > maxMagnitude) {
+                        maxMagnitude = currentMagnitude;
+                    }
+                    if (currentMagnitude < minMagnitude) {
+                        minMagnitude = currentMagnitude;
+                    }
+                }
+                compteur++;
+            }
+        }
+
+        System.out.println("Nombre de séismes : " + compteur);
+        System.out.println("Séisme minimum : " + minMagnitude);
+        System.out.println("Séisme maximum : " + maxMagnitude);
+    }
+
+//fonction pour vérifier si les valeurs sont compatibles avec les entrées utilisateur
+//on vérifie pour chaque entrée si la valeur est compatible si une des valeurs n'est pas compatible on renvoie false.
+    private boolean estCompatible(String[] valeurs, String dateSelectionnee, String localisation, String nom, String intensite) {
         // Vérifier la compatibilité avec la date sélectionnée
         if (dateSelectionnee != null && !dateSelectionnee.isEmpty()) {
             String valeurDate = valeurs[1];
@@ -214,7 +189,6 @@ public class HelloController {
                 return false; // L'entrée n'est pas compatible avec la date sélectionnée
             }
         }
-
         // Vérifier la compatibilité avec la localisation
         if (localisation != null && !localisation.isEmpty()) {
             String valeurLocalisation = valeurs[4];
@@ -222,7 +196,6 @@ public class HelloController {
                 return false; // L'entrée n'est pas compatible avec la localisation
             }
         }
-
         // Vérifier la compatibilité avec le nom
         if (nom != null && !nom.isEmpty()) {
             String valeurNom = valeurs[3];
@@ -230,10 +203,14 @@ public class HelloController {
                 return false; // L'entrée n'est pas compatible avec le nom
             }
         }
-
+        if (intensite != null && !intensite.isEmpty()) {
+            String valeurIntensite = valeurs[10];
+            if (!valeurIntensite.contains(intensite)) {
+                return false; // L'entrée n'est pas compatible avec le nom
+            }
+        }
         return true; // L'entrée est compatible avec toutes les valeurs saisies par l'utilisateur
     }
-
 
     @FXML
     public void vga () {
@@ -266,8 +243,52 @@ public class HelloController {
         System.out.println("Moyenne sur l'échelle Richter : " + moyenne);
     }
 
-    public void fenetre0(ActionEvent actionEvent) {initRootLayout();}
-    public void fenetre1(ActionEvent actionEvent) {initRootLayout();}
-    public void fenetre2(ActionEvent actionEvent) {initRootLayout();}
-    public void refresh(ActionEvent actionEvent) {initRootLayout();}
+    @FXML
+    private Button fenetre1;
+
+    @FXML
+    private Button fenetre2;
+
+    @FXML
+    private Button refresh;
+
+    @FXML
+    public void fenetre1c (ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("graph.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) fenetre1.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void fenetre2c (ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("graphtt.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) fenetre2.getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    public void refreshc (ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("hello-view.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

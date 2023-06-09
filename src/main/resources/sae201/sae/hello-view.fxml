@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.control.cell.*?>
 <?import javafx.scene.image.*?>
@@ -15,9 +17,18 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="800.0" spacing="20.0">
                <children>
-                  <Button fx:id="fenetre1" mnemonicParsing="false" onAction="#stats" style="-fx-background-color: #279af1;" text="Carte et Statistiques" />
-                  <Button fx:id="fenetre2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#vga" style="-fx-background-color: #279af1;" text="Carte et Statistiques total" />
-                  <Button mnemonicParsing="false" onAction="#rechercher" text="Recherche" />
+                  <Button fx:id="fenetre1" mnemonicParsing="false" onAction="#fenetre1c" style="-fx-background-color: #279af1;" text="Carte et Statistiques">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="fenetre2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#fenetre2c" style="-fx-background-color: #279af1;" text="Carte et Statistiques total">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button mnemonicParsing="false" onAction="#rechercher" text="Recherche">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
                </children>
             </HBox>
             <TableView fx:id="tableView" nodeOrientation="LEFT_TO_RIGHT" prefHeight="705.0" prefWidth="800.0">
@@ -86,21 +97,44 @@
    <top>
       <VBox prefHeight="109.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="43.0" prefWidth="600.0" spacing="30.0">
+            <HBox alignment="CENTER" prefHeight="26.0" prefWidth="746.0" spacing="30.0">
                <children>
-                  <ImageView fx:id="image1" fitHeight="49.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="465.0" text="Le site des séismes">
+                  <ImageView fx:id="image1" fitHeight="69.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@SisAix.png" />
+                     </image></ImageView>
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="59.0" prefWidth="499.0" text="" underline="true">
                      <font>
-                        <Font size="32.0" />
+                        <Font name="Bangla MN" size="32.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <padding>
+                        <Insets left="50.0" />
+                     </padding>
                   </Label>
-                  <ImageView fx:id="image2" fitHeight="49.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="image2" fitHeight="58.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Univ_Aix-Marseille_-_IUT.png" />
+                     </image></ImageView>
                </children>
             </HBox>
-            <HBox prefHeight="19.0" prefWidth="600.0" style="-fx-background-color: #453f78;">
+            <HBox alignment="CENTER" prefHeight="19.0" prefWidth="600.0" style="-fx-background-color: #453f78;">
                <children>
-                  <Label prefHeight="17.0" prefWidth="784.0" text="Filtré par" textFill="WHITE" />
-                  <Button fx:id="refresh" alignment="CENTER_RIGHT" contentDisplay="CENTER" mnemonicParsing="false" text="\@" />
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="78.0" text=" Filtrer par" textFill="WHITE" />
+                  <Button fx:id="refresh" mnemonicParsing="false" onAction="#refreshc">
+                     <graphic>
+                        <ImageView id="Reload" accessibleRole="BUTTON" fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@Refresh.png" />
+                           </image>
+                           <cursor>
+                              <Cursor fx:constant="WAIT" />
+                           </cursor>
+                        </ImageView>
+                     </graphic>
+                  </Button>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="30.0" style="-fx-background-color: #279af1;">
@@ -121,7 +155,7 @@
                   </Label>
                   <Label text="Intensité">
                      <graphic>
-                        <TextField fx:id="intensité" prefHeight="24.0" prefWidth="42.0" />
+                        <TextField fx:id="intensite" prefHeight="24.0" prefWidth="42.0" />
                      </graphic>
                   </Label>
                </children>
