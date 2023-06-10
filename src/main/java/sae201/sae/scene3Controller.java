@@ -15,6 +15,9 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import com.gluonhq.maps.MapPoint;
+import com.gluonhq.maps.MapView;
+
 import java.util.ResourceBundle;
 import java.io.IOException;
 import java.net.URL;
@@ -28,22 +31,9 @@ public class scene3Controller {
 
     @FXML
     private Button refresh;
-
-    @FXML
-    private PieChart camembert2;
-
-    @FXML
     public void initialize() {
-        ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-                new PieChart.Data("Catégorie 1", 30),
-                new PieChart.Data("Catégorie 2", 20),
-                new PieChart.Data("Catégorie 3", 50)
-        );
-        camembert2.setData(pieChartData);
-
+        MapView mapView = new MapView();
     }
-
-
     @FXML
     public void fenetre0c(ActionEvent event) {
         try {

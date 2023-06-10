@@ -109,7 +109,7 @@ public class HelloController {
             e.printStackTrace();
         }
     }
-//afficher les données dans les colones correspondantes
+    //afficher les données dans les colones correspondantes
     @FXML
     public void affichDonnee(List<String[]> resultat) {
         tableView.getItems().clear();//on clear l'ancienne entrée.
@@ -132,7 +132,7 @@ public class HelloController {
     public List<String[]> rechercher() {
         lireDonnees();
         List<String[]> resultats = new ArrayList<>();
-        resultats.clear();//on clear l'ancien tableau au où
+        resultats.clear();//on clear l'ancien tableau
         // Récupérer les valeurs saisies par l'utilisateur (prend en compte la casse)
         String dateSelectionnee = (date.getValue() != null) ? date.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : null;
         String localisationSelectionnee = localisation.getText().toUpperCase();
@@ -147,39 +147,27 @@ public class HelloController {
         affichDonnee(resultats);
         return resultats;
     }
-    public void stats() {
-        lireDonnees();
-        String dateSelectionnee = (date.getValue() != null) ? date.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : null;
-        String localisationSelectionnee = localisation.getText().toUpperCase();
-        String nomSelectionnee = nom.getText().toUpperCase();
-        String intensiteSelectionnee = intensite.getText().toUpperCase();
-
-        int compteur = 0;
+    public void stats(){
         double maxMagnitude = Double.MIN_VALUE;
         double minMagnitude = Double.MAX_VALUE;
-
-        for (String[] ligne : donnees) {
-            if (estCompatible(ligne, dateSelectionnee, localisationSelectionnee, nomSelectionnee, intensiteSelectionnee)) {
-                String magnitudeString = ligne[10].trim(); // Supprimer les espaces en début et fin de la chaîne
-                if (!magnitudeString.isEmpty()) {
-                    double currentMagnitude = Double.parseDouble(magnitudeString);
-                    if (currentMagnitude > maxMagnitude) {
-                        maxMagnitude = currentMagnitude;
-                    }
-                    if (currentMagnitude < minMagnitude) {
-                        minMagnitude = currentMagnitude;
-                    }
+        List<String[]> rsltRecherche = rechercher();
+        int nbSeisme = rsltRecherche.size();
+        for ( String[] rslt: rsltRecherche){
+            String magnitudeString = rslt[10].trim();
+            if (!magnitudeString.isEmpty()) {
+                double currentMagnitude = Double.parseDouble(magnitudeString);
+                if (currentMagnitude > maxMagnitude) {
+                    maxMagnitude = currentMagnitude;
                 }
-                compteur++;
+                if (currentMagnitude < minMagnitude) {
+                    minMagnitude = currentMagnitude;
+                }
             }
         }
-
-        System.out.println("Nombre de séismes : " + compteur);
         System.out.println("Séisme minimum : " + minMagnitude);
         System.out.println("Séisme maximum : " + maxMagnitude);
     }
-
-//fonction pour vérifier si les valeurs sont compatibles avec les entrées utilisateur
+    //fonction pour vérifier si les valeurs sont compatibles avec les entrées utilisateur
 //on vérifie pour chaque entrée si la valeur est compatible si une des valeurs n'est pas compatible on renvoie false.
     private boolean estCompatible(String[] valeurs, String dateSelectionnee, String localisation, String nom, String intensite) {
         // Vérifier la compatibilité avec la date sélectionnée
