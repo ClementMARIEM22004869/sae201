@@ -91,7 +91,7 @@
         </VBox>
     </center>
     <top>
-        <VBox prefHeight="109.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+        <VBox prefHeight="109.0" prefWidth="600.0" style="-fx-background-color: #fbfdfa;" BorderPane.alignment="CENTER">
             <children>
                 <HBox alignment="CENTER" prefHeight="43.0" prefWidth="600.0" spacing="30.0">
                     <children>
@@ -116,7 +116,7 @@
                 <HBox alignment="CENTER" prefHeight="19.0" prefWidth="600.0" style="-fx-background-color: #453f78;">
                     <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="78.0" text=" Filtrer par" textFill="WHITE" />
-                        <Button fx:id="refresh" mnemonicParsing="false" onAction="#refreshc">
+                        <Button fx:id="refresh" mnemonicParsing="false" onAction="#refreshc" text="Réinitialiser">
                             <graphic>
                                 <ImageView id="Reload" accessibleRole="BUTTON" fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                     <image>

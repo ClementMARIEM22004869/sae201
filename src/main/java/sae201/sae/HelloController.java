@@ -70,12 +70,16 @@ public class HelloController {
     @FXML
     private DatePicker date;
     @FXML
-    private TextField localisation;
+    private ComboBox selecteurLoc;
     @FXML
     private TextField nom;
     @FXML
     private TextField intensite;
     private List<String[]> resultats = new ArrayList<String[]>();
+    public void initialize(){
+        lireDonnees();
+        mettreDansSelecteurLoc();
+    }
     @FXML
     //lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans.
     public void lireDonnees() {
@@ -137,7 +141,7 @@ public class HelloController {
         resultats.clear();//on clear l'ancien tableau
         // Récupérer les valeurs saisies par l'utilisateur (prend en compte la casse)
         String dateSelectionnee = (date.getValue() != null) ? date.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : null;
-        String localisationSelectionnee = localisation.getText().toUpperCase();
+        String localisationSelectionnee = selecteurLoc.getValue().toString();
         String nomSelectionnee = nom.getText().toUpperCase();
         String intensiteSelectionnee = intensite.getText().toUpperCase();
         //parcours des données et récupération des bonnes
@@ -150,6 +154,13 @@ public class HelloController {
         affichDonnee(resultats);
         return resultats;
 
+    }
+    public void mettreDansSelecteurLoc(){
+        for (String[] dns : donnees){
+            if (!selecteurLoc.getItems().toString().contains(dns[4])){
+                selecteurLoc.getItems().add(dns[4]);
+            }
+        }
     }
     public void stats(){
         double maxMagnitude = Double.MIN_VALUE;

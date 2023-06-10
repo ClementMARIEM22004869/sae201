@@ -94,15 +94,15 @@
          </children></VBox>
    </center>
    <top>
-      <VBox prefHeight="109.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="109.0" prefWidth="600.0" styleClass="#fbfdfa" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="26.0" prefWidth="746.0" spacing="30.0">
+            <HBox alignment="CENTER" prefHeight="26.0" prefWidth="746.0" spacing="30.0" style="-fx-background-color: #fbfdfa;">
                <children>
                   <ImageView fx:id="image1" fitHeight="69.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@SisAix.png" />
                      </image></ImageView>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="59.0" prefWidth="499.0" text="" underline="true">
+                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="59.0" prefWidth="499.0" style="-fx-background-color: #fbfdfa;" text="" underline="true">
                      <font>
                         <Font name="Bangla MN" size="32.0" />
                      </font>
@@ -144,9 +144,8 @@
                      </graphic></Label>
                   <Label text="Localisation">
                      <graphic>
-                        <TextField fx:id="localisation" prefHeight="24.0" prefWidth="61.0" />
-                     </graphic>
-                  </Label>
+                        <ComboBox fx:id="selecteurLoc" prefWidth="150.0" />
+                     </graphic></Label>
                   <Label text="Nom">
                      <graphic>
                         <TextField fx:id="nom" prefHeight="24.0" prefWidth="58.0" />

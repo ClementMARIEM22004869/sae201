@@ -88,9 +88,13 @@ public class scene3Controller {
     private Button refresh;
     @FXML
     private StackPane stackpane;
+    @FXML
+    private ComboBox selecteurLoc;
     private MapLayer mapLayer;
     private MapView map;
     public void initialize(){
+        lireDonnees();
+        mettreDansSelecteurLoc();
         System.setProperty("javafx.platform", "desktop");
         System.setProperty("http.agent", "Gluon Mobile/1.0.3");
         map = new MapView();
@@ -100,6 +104,13 @@ public class scene3Controller {
         map.setMinSize(stackpane.getWidth(), stackpane.getHeight());
         map.setMaxSize(stackpane.getMaxWidth(), stackpane.getMaxHeight());
         stackpane.getChildren().add(map);
+    }
+    public void mettreDansSelecteurLoc(){
+        for (String[] dns : donnees){
+            if (!selecteurLoc.getItems().toString().contains(dns[4])){
+                selecteurLoc.getItems().add(dns[4]);
+            }
+        }
     }
     public void lireDonnees() {
         String csvFile = "src/main/resources/sae201/sae/donne.csv";
@@ -141,12 +152,11 @@ public class scene3Controller {
         resultats.clear();//on clear l'ancien tableau
         // Récupérer les valeurs saisies par l'utilisateur (prend en compte la casse)
         String dateSelectionnee = (date.getValue() != null) ? date.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : null;
-        String localisationSelectionnee = localisation.getText().toUpperCase();
-        String nomSelectionnee = nom.getText().toUpperCase();
+        String localisationSelectionnee = (selecteurLoc.getValue() != null) ? selecteurLoc.getValue().toString() : null;
         String intensiteSelectionnee = intensite.getText().toUpperCase();
         //parcours des données et récupération des bonnes
         for (String[] valeurs : donnees) {
-            if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, nomSelectionnee, intensiteSelectionnee)) {
+            if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, intensiteSelectionnee)) {
                 resultats.add(valeurs);
                 this.resultats.add(valeurs);
             }
@@ -155,7 +165,7 @@ public class scene3Controller {
         return resultats;
 
     }
-    private boolean estCompatible(String[] valeurs, String dateSelectionnee, String localisation, String nom, String intensite) {
+    private boolean estCompatible(String[] valeurs, String dateSelectionnee, String localisation, String intensite) {
         // Vérifier la compatibilité avec la date sélectionnée
         if (dateSelectionnee != null && !dateSelectionnee.isEmpty()) {
             String valeurDate = valeurs[1];
@@ -170,13 +180,6 @@ public class scene3Controller {
                 return false; // L'entrée n'est pas compatible avec la localisation
             }
         }
-        // Vérifier la compatibilité avec le nom
-        if (nom != null && !nom.isEmpty()) {
-            String valeurNom = valeurs[3];
-            if (!valeurNom.contains(nom)) {
-                return false; // L'entrée n'est pas compatible avec le nom
-            }
-        }
         if (intensite != null && !intensite.isEmpty()) {
             String valeurIntensite = valeurs[10];
             if (!valeurIntensite.contains(intensite)) {
@@ -184,11 +187,6 @@ public class scene3Controller {
             }
         }
         return true; // L'entrée est compatible avec toutes les valeurs saisies par l'utilisateur
-    }
-    public void affich(){
-        MapPoint mapPoint = new MapPoint(46.227638, 2.213749);
-        CustomCircleMarkerLayer customCircleMarkerLayer = new CustomCircleMarkerLayer(mapPoint);
-        map.addLayer(customCircleMarkerLayer);
     }
 
     public void affichPointCarte(){
