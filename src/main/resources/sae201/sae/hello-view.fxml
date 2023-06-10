@@ -29,10 +29,10 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button mnemonicParsing="false" onAction="#stats1" text="Button" />
+                  <Button mnemonicParsing="false" onAction="#stats" text="Button" />
                </children>
             </HBox>
-            <TableView fx:id="tableView" nodeOrientation="LEFT_TO_RIGHT" prefHeight="705.0" prefWidth="800.0">
+            <TableView fx:id="tableView" nodeOrientation="LEFT_TO_RIGHT" prefHeight="686.0" prefWidth="800.0">
                <columns>
                   <TableColumn fx:id="identifiantColumn" prefWidth="93.0" text="Identifiant">
                      <cellValueFactory>
@@ -91,8 +91,6 @@
                   </TableColumn>
                </columns>
             </TableView>
-
-
          </children></VBox>
    </center>
    <top>

@@ -1,5 +1,7 @@
 package sae201.sae;
 
+import com.gluonhq.maps.MapPoint;
+import com.gluonhq.maps.MapView;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -73,6 +75,7 @@ public class HelloController {
     private TextField nom;
     @FXML
     private TextField intensite;
+    private List<String[]> resultats = new ArrayList<String[]>();
     @FXML
     //lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans.
     public void lireDonnees() {
@@ -131,7 +134,6 @@ public class HelloController {
     //fonction pour rechercher et filtrer
     public List<String[]> rechercher() {
         lireDonnees();
-        List<String[]> resultats = new ArrayList<>();
         resultats.clear();//on clear l'ancien tableau
         // Récupérer les valeurs saisies par l'utilisateur (prend en compte la casse)
         String dateSelectionnee = (date.getValue() != null) ? date.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : null;
@@ -142,10 +144,12 @@ public class HelloController {
         for (String[] valeurs : donnees) {
             if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, nomSelectionnee, intensiteSelectionnee)) {
                 resultats.add(valeurs);
+                this.resultats.add(valeurs);
             }
         }
         affichDonnee(resultats);
         return resultats;
+
     }
     public void stats(){
         double maxMagnitude = Double.MIN_VALUE;
