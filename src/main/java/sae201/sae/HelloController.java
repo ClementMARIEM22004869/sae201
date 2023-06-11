@@ -141,12 +141,11 @@ public class HelloController {
         resultats.clear();//on clear l'ancien tableau
         // Récupérer les valeurs saisies par l'utilisateur (prend en compte la casse)
         String dateSelectionnee = (date.getValue() != null) ? date.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : null;
-        String localisationSelectionnee = selecteurLoc.getValue().toString();
-        String nomSelectionnee = nom.getText().toUpperCase();
+        String localisationSelectionnee = (selecteurLoc.getValue() != null) ? selecteurLoc.getValue().toString() : null;
         String intensiteSelectionnee = intensite.getText().toUpperCase();
         //parcours des données et récupération des bonnes
         for (String[] valeurs : donnees) {
-            if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, nomSelectionnee, intensiteSelectionnee)) {
+            if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, intensiteSelectionnee)) {
                 resultats.add(valeurs);
                 this.resultats.add(valeurs);
             }
@@ -184,7 +183,7 @@ public class HelloController {
     }
     //fonction pour vérifier si les valeurs sont compatibles avec les entrées utilisateur
 //on vérifie pour chaque entrée si la valeur est compatible si une des valeurs n'est pas compatible on renvoie false.
-    private boolean estCompatible(String[] valeurs, String dateSelectionnee, String localisation, String nom, String intensite) {
+    private boolean estCompatible(String[] valeurs, String dateSelectionnee, String localisation, String intensite) {
         // Vérifier la compatibilité avec la date sélectionnée
         if (dateSelectionnee != null && !dateSelectionnee.isEmpty()) {
             String valeurDate = valeurs[1];
@@ -197,13 +196,6 @@ public class HelloController {
             String valeurLocalisation = valeurs[4];
             if (!valeurLocalisation.contains(localisation)) {
                 return false; // L'entrée n'est pas compatible avec la localisation
-            }
-        }
-        // Vérifier la compatibilité avec le nom
-        if (nom != null && !nom.isEmpty()) {
-            String valeurNom = valeurs[3];
-            if (!valeurNom.contains(nom)) {
-                return false; // L'entrée n'est pas compatible avec le nom
             }
         }
         if (intensite != null && !intensite.isEmpty()) {
