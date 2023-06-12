@@ -18,6 +18,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.Arrays;
 import java.util.List;
 import javafx.event.ActionEvent;
@@ -68,7 +69,9 @@ public class HelloController {
     @FXML
     private TableColumn<String[], String> longitude;
     @FXML
-    private DatePicker date;
+    private TextField date;
+    @FXML
+    private TextField date2;
     @FXML
     private ComboBox selecteurLoc;
     @FXML
@@ -140,20 +143,52 @@ public class HelloController {
         lireDonnees();
         resultats.clear();//on clear l'ancien tableau
         // Récupérer les valeurs saisies par l'utilisateur (prend en compte la casse)
-        String dateSelectionnee = (date.getValue() != null) ? date.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : null;
+        String dateSelectionnee = (date.getText() != null && !date.getText().isEmpty()) ? date.getText().replace("/", "-") : null;
+        String date2Selectionnee = (date2.getText() != null && !date2.getText().isEmpty()) ? date2.getText().replace("/", "-") : null;
+
+
         String localisationSelectionnee = (selecteurLoc.getValue() != null) ? selecteurLoc.getValue().toString() : null;
         String intensiteSelectionnee = intensite.getText().toUpperCase();
         //parcours des données et récupération des bonnes
         for (String[] valeurs : donnees) {
-            if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, intensiteSelectionnee)) {
-                resultats.add(valeurs);
-                this.resultats.add(valeurs);
+            String dateString = valeurs[1].replace("/","-");
+            LocalDate dateValeur = null;
+            try {
+                dateValeur = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            } catch (DateTimeParseException e) {
+                System.out.println("Erreur de format de date : " + dateString);
+            }
+
+            // Vérifier si la date est comprise entre dateSelectionnee et date2Selectionnee
+            if (dateSelectionnee != null && date2Selectionnee != null && dateValeur!= null) {
+                LocalDate parsedDateSelectionnee = null;
+                LocalDate parsedDate2Selectionnee = null;
+                try {
+                    parsedDateSelectionnee = LocalDate.parse(dateSelectionnee);
+                    parsedDate2Selectionnee = LocalDate.parse(date2Selectionnee);
+                } catch (DateTimeParseException ex) {
+                    System.out.println("Erreur de format de date sélectionnée");
+                    continue;
+                }
+
+                if (dateValeur.isAfter(parsedDate2Selectionnee) && dateValeur.isBefore(parsedDateSelectionnee)) {
+                    if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, intensiteSelectionnee)) {
+                        resultats.add(valeurs);
+                    }
+                }
+            }
+            if (dateSelectionnee == null && date2Selectionnee == null) {
+                if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, intensiteSelectionnee)) {
+                    resultats.add(valeurs);
+                }
             }
         }
+
         affichDonnee(resultats);
         return resultats;
 
     }
+    //Mettre les localisation dans le ComboBox
     public void mettreDansSelecteurLoc(){
         for (String[] dns : donnees){
             if (!selecteurLoc.getItems().toString().contains(dns[4])){
@@ -161,6 +196,7 @@ public class HelloController {
             }
         }
     }
+    //Statistiques
     public void stats(){
         double maxMagnitude = Double.MIN_VALUE;
         double minMagnitude = Double.MAX_VALUE;
@@ -183,14 +219,7 @@ public class HelloController {
     }
     //fonction pour vérifier si les valeurs sont compatibles avec les entrées utilisateur
 //on vérifie pour chaque entrée si la valeur est compatible si une des valeurs n'est pas compatible on renvoie false.
-    private boolean estCompatible(String[] valeurs, String dateSelectionnee, String localisation, String intensite) {
-        // Vérifier la compatibilité avec la date sélectionnée
-        if (dateSelectionnee != null && !dateSelectionnee.isEmpty()) {
-            String valeurDate = valeurs[1];
-            if (!valeurDate.contains(dateSelectionnee)) {
-                return false; // L'entrée n'est pas compatible avec la date sélectionnée
-            }
-        }
+    private boolean estCompatible(String[] valeurs, String dateSelectionnee , String localisation, String intensite) {
         // Vérifier la compatibilité avec la localisation
         if (localisation != null && !localisation.isEmpty()) {
             String valeurLocalisation = valeurs[4];

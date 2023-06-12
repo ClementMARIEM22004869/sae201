@@ -138,10 +138,9 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="30.0" style="-fx-background-color: #279af1;">
                <children>
-                  <Label text="Date">
-                     <graphic>
-                        <DatePicker fx:id="date" />
-                     </graphic></Label>
+                  <TextField fx:id="date2" promptText="De" />
+                  <TextField fx:id="date" promptText="À" />
+                  <Label text="Date" />
                   <Label text="Localisation">
                      <graphic>
                         <ComboBox fx:id="selecteurLoc" prefWidth="150.0" />
