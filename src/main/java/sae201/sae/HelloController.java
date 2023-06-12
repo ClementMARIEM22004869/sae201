@@ -1,17 +1,14 @@
 package sae201.sae;
 
-import com.gluonhq.maps.MapPoint;
-import com.gluonhq.maps.MapView;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import org.w3c.dom.Text;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -19,26 +16,15 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
-
-
-import java.util.ArrayList;
-import java.util.Locale;
 
 public class HelloController {
     @FXML
     private Label welcomeText;
     @FXML
     private Button btn;
-
     @FXML
     //le tableau de String
     private List<String[]> donnees = new ArrayList<String[]>();
@@ -78,13 +64,24 @@ public class HelloController {
     private TextField nom;
     @FXML
     private TextField intensite;
+    @FXML
+    private Button fenetre1;
+    @FXML
+    private Button fenetre2;
+    @FXML
+    private Button refresh;
     private List<String[]> resultats = new ArrayList<String[]>();
+    /**
+     * Initialise la vue en lisant les données et en configurant le sélecteur de localisation.
+     */
     public void initialize(){
         lireDonnees();
         mettreDansSelecteurLoc();
     }
+    /**
+     * lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans.
+     */
     @FXML
-    //lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans
     public void lireDonnees() {
         String csvFile = "src/main/resources/sae201/sae/donnee.csv";
         //ligne actuelle
@@ -119,7 +116,10 @@ public class HelloController {
             e.printStackTrace();
         }
     }
-    //afficher les données dans les colones correspondantes
+    /**
+     * Affiche les données dans les colonnes correspondantes du TableView.
+     * @param resultat Les données à afficher.
+     */
     @FXML
     public void affichDonnee(List<String[]> resultat) {
         tableView.getItems().clear();//on clear l'ancienne entrée.
@@ -137,8 +137,10 @@ public class HelloController {
         //on ajoute les données dans le TableView
         tableView.getItems().addAll(resultat);
     }
-
-    //fonction pour rechercher et filtrer
+    /**
+     * Effectue une recherche et un filtrage des données.
+     * @return Les résultats de la recherche.
+     */
     public List<String[]> rechercher() {
         lireDonnees();
         resultats.clear();//on clear l'ancien tableau
@@ -191,7 +193,9 @@ public class HelloController {
         return resultats;
 
     }
-    //Mettre les localisation dans le ComboBox
+    /**
+     * Ajoute les localisation dans le ComboBox.
+     */
     public void mettreDansSelecteurLoc(){
         for (String[] dns : donnees){
             if (!selecteurLoc.getItems().toString().contains(dns[4])){
@@ -199,7 +203,9 @@ public class HelloController {
             }
         }
     }
-    //Statistiques
+    /**
+     * Effectue des statistiques sur les données, en calculant la magnitude maximale et minimale.
+     */
     public void stats(){
         double maxMagnitude = Double.MIN_VALUE;
         double minMagnitude = Double.MAX_VALUE;
@@ -220,8 +226,13 @@ public class HelloController {
         System.out.println("Séisme minimum : " + minMagnitude);
         System.out.println("Séisme maximum : " + maxMagnitude);
     }
-    //fonction pour vérifier si les valeurs sont compatibles avec les entrées utilisateur
-    //on vérifie pour chaque entrée si la valeur est compatible si une des valeurs n'est pas compatible on renvoie false.
+    /**
+     * Vérifie si les valeurs sont compatibles avec les entrées utilisateur et vérifie pour chaque entrée si la valeur est compatible si une des valeurs n'est pas compatible on renvoie false.
+     * @param valeurs Les valeurs à vérifier.
+     * @param localisation La localisation saisie par l'utilisateur.
+     * @param intensite L'intensité saisie par l'utilisateur.
+     * @return True si les valeurs sont compatibles, False sinon.
+     */
     private boolean estCompatible(String[] valeurs, String localisation, String intensite) {
         // Vérifier la compatibilité avec la localisation
         if (localisation != null && !localisation.isEmpty()) {
@@ -239,7 +250,9 @@ public class HelloController {
         }
         return true; // L'entrée est compatible avec toutes les valeurs saisies par l'utilisateur
     }
-
+    /**
+     * Calcule la moyenne sur l'échelle Richter des magnitudes des séismes.
+     */
     @FXML
     public void vga () {
         lireDonnees();
@@ -271,15 +284,12 @@ public class HelloController {
         System.out.println("Moyenne sur l'échelle Richter : " + moyenne);
     }
 
-    @FXML
-    private Button fenetre1;
-
-    @FXML
-    private Button fenetre2;
-
-    @FXML
-    private Button refresh;
-
+    /**
+     * Action exécutée lors du clic sur le bouton fenetre1.
+     * Charge le fichier FXML "graph.fxml" et affiche la scène correspondante.
+     *
+     * @param event L'événement de clic sur le bouton.
+     */
     @FXML
     public void fenetre1c (ActionEvent event) {
         try {
@@ -292,7 +302,12 @@ public class HelloController {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Action exécutée lors du clic sur le bouton fenetre2.
+     * Charge le fichier FXML "graphtt.fxml" et affiche la scène correspondante.
+     *
+     * @param event L'événement de clic sur le bouton.
+     */
     @FXML
     public void fenetre2c (ActionEvent event) {
         try {
@@ -305,7 +320,12 @@ public class HelloController {
             e.printStackTrace();
         }
     }
-    //fonction pour rafraichir
+    /**
+     * Action exécutée lors du clic sur le bouton refresh.
+     * Charge le fichier FXML "hello-view.fxml" et affiche la scène correspondante.
+     *
+     * @param event L'événement de clic sur le bouton.
+     */
     @FXML
     public void refreshc (ActionEvent event) {
         try {
@@ -318,5 +338,4 @@ public class HelloController {
             e.printStackTrace();
         }
     }
-
 }

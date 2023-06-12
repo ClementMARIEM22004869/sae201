@@ -1,43 +1,27 @@
 package sae201.sae;
 
 import com.gluonhq.maps.MapLayer;
-import javafx.beans.binding.Binding;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import com.gluonhq.maps.MapPoint;
+import com.gluonhq.maps.MapView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.chart.PieChart;
-import javafx.scene.chart.LineChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.*;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-import com.gluonhq.maps.MapPoint;
-import com.gluonhq.maps.MapView;
-import com.gluonhq.maps.MapLayer;
-import javafx.geometry.Point2D;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-
-import static javafx.beans.binding.Binding.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class scene3Controller {
     @FXML
@@ -96,6 +80,11 @@ public class scene3Controller {
     private ComboBox selecteurLoc;
     private MapLayer mapLayer;
     private MapView map;
+
+    /**
+     * Initialise la vue.
+     * Lit les données, configure le sélecteur de localisation et initialise la carte.
+     */
     public void initialize(){
         lireDonnees();
         mettreDansSelecteurLoc();
@@ -109,6 +98,9 @@ public class scene3Controller {
         map.setMaxSize(stackpane.getMaxWidth(), stackpane.getMaxHeight());
         stackpane.getChildren().add(map);
     }
+    /**
+     * Ajoute les localisations uniques dans le sélecteur de localisation.
+     */
     public void mettreDansSelecteurLoc(){
         for (String[] dns : donnees){
             if (!selecteurLoc.getItems().toString().contains(dns[4])){
@@ -116,7 +108,9 @@ public class scene3Controller {
             }
         }
     }
-    //lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans
+    /**
+     * lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans.
+     */
     public void lireDonnees() {
         String csvFile = "src/main/resources/sae201/sae/donnee.csv";
         //ligne actuelle
@@ -151,7 +145,12 @@ public class scene3Controller {
             e.printStackTrace();
         }
     }
-    //fonction pour rechercher et filtrer
+    /**
+     * Effectue une recherche en fonction des valeurs saisies par l'utilisateur.
+     * Les résultats sont stockés dans la liste resultats.
+     *
+     * @return La liste des résultats de la recherche.
+     */
     @FXML
     public List<String[]> rechercher() {
         lireDonnees();
@@ -203,8 +202,16 @@ public class scene3Controller {
         return resultats;
 
     }
-    //fonction pour vérifier si les valeurs sont compatibles avec les entrées utilisateur
-    //on vérifie pour chaque entrée si la valeur est compatible si une des valeurs n'est pas compatible on renvoie false.
+
+    /**
+     * Vérifie si les valeurs sont compatibles avec les entrées utilisateur,on vérifie pour chaque entrée si la valeur est compatible si une des valeurs n'est pas compatible on renvoie false
+     *
+     * @param valeurs              Les valeurs à vérifier.
+     * @param dateSelectionnee     La date sélectionnée par l'utilisateur.
+     * @param localisation         La localisation sélectionnée par l'utilisateur.
+     * @param intensite            L'intensité sélectionnée par l'utilisateur.
+     * @return True si les valeurs sont compatibles avec les entrées utilisateur, False sinon.
+     */
     private boolean estCompatible(String[] valeurs, String dateSelectionnee , String localisation, String intensite) {
         // Vérifier la compatibilité avec la localisation
         if (localisation != null && !localisation.isEmpty()) {
@@ -222,7 +229,10 @@ public class scene3Controller {
         }
         return true; // L'entrée est compatible avec toutes les valeurs saisies par l'utilisateur
     }
-//afficher les points sur la carte
+
+    /**
+     * Affiche les points correspondants aux résultats sur la carte.
+     */
     public void affichPointCarte(){
         map.removeLayer(mapLayer);
         for (String[] rslt : resultats){
@@ -236,8 +246,12 @@ public class scene3Controller {
         }
     }
 
-
-
+    /**
+     * Action exécutée lors du clic sur le bouton fenetre0.
+     * Charge le fichier FXML "hello-view.fxml" et affiche la scène correspondante.
+     *
+     * @param event L'événement de clic sur le bouton.
+     */
     @FXML
     public void fenetre0c(ActionEvent event) {
         try {
@@ -250,7 +264,12 @@ public class scene3Controller {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Action exécutée lors du clic sur le bouton refresh.
+     * Charge le fichier FXML "graphtt.fxml" et affiche la scène correspondante.
+     *
+     * @param event L'événement de clic sur le bouton.
+     */
     @FXML
     public void refreshc (ActionEvent event) {
         try {

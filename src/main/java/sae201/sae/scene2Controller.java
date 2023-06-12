@@ -37,6 +37,12 @@ public class scene2Controller {
 
     }
 
+    /**
+     * Action exécutée lors du clic sur le bouton fenetre0.
+     * Charge le fichier FXML "hello-view.fxml" et affiche la scène correspondante.
+     *
+     * @param event L'événement de clic sur le bouton.
+     */
     @FXML
     public void fenetre0c(ActionEvent event) {
         try {
@@ -49,7 +55,12 @@ public class scene2Controller {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Action exécutée lors du clic sur le bouton fenetre2.
+     * Charge le fichier FXML "graphtt.fxml" et affiche la scène correspondante.
+     *
+     * @param event L'événement de clic sur le bouton.
+     */
     @FXML
     public void fenetre2c(ActionEvent event) {
         try {
@@ -62,7 +73,12 @@ public class scene2Controller {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Action exécutée lors du clic sur le bouton refresh.
+     * Charge le fichier FXML "graph.fxml" et affiche la scène correspondante.
+     *
+     * @param event L'événement de clic sur le bouton.
+     */
     @FXML
     public void refreshc (ActionEvent event) {
         try {
