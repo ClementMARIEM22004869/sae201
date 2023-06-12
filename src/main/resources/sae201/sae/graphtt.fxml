@@ -61,8 +61,8 @@
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin></Label>
-                  <TextField prefHeight="24.0" prefWidth="114.0" promptText="De" />
-                  <TextField prefHeight="24.0" prefWidth="114.0" promptText="À" />
+                  <TextField fx:id="date2" prefHeight="24.0" prefWidth="114.0" promptText="De" />
+                  <TextField fx:id="date" prefHeight="24.0" prefWidth="114.0" promptText="À" />
                         <Label text="Localisation">
                      <graphic>
                         <ComboBox fx:id="selecteurLoc" prefHeight="24.0" prefWidth="111.0" />
@@ -73,7 +73,7 @@
                                 <TextField fx:id="intensite" prefHeight="24.0" prefWidth="42.0" />
                             </graphic>
                         </Label>
-                  <Button fx:id="filtrer" mnemonicParsing="false" onAction="#rechercher" text="Filtrer" />
+                  <Button fx:id="rechercher" mnemonicParsing="false" onAction="#rechercher" text="Filtrer" />
                     </children>
                 </HBox>
             </children>

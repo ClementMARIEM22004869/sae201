@@ -199,14 +199,7 @@ public class scene3Controller {
         return resultats;
 
     }
-    private boolean estCompatible(String[] valeurs, String dateSelectionnee, String localisation, String intensite) {
-        // Vérifier la compatibilité avec la date sélectionnée
-        if (dateSelectionnee != null && !dateSelectionnee.isEmpty()) {
-            String valeurDate = valeurs[1];
-            if (!valeurDate.contains(dateSelectionnee)) {
-                return false; // L'entrée n'est pas compatible avec la date sélectionnée
-            }
-        }
+    private boolean estCompatible(String[] valeurs, String dateSelectionnee , String localisation, String intensite) {
         // Vérifier la compatibilité avec la localisation
         if (localisation != null && !localisation.isEmpty()) {
             String valeurLocalisation = valeurs[4];
