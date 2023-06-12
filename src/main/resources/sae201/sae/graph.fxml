@@ -20,7 +20,7 @@
                             <HBox.margin>
                                 <Insets top="10.0" />
                             </HBox.margin></Button>
-                        <Button fx:id="fenetre2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#fenetre2c" style="-fx-background-color: #279af1;" text="Carte et Statistiques total">
+                        <Button fx:id="fenetre2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#fenetre2c" style="-fx-background-color: #279af1;" text="Carte">
                             <HBox.margin>
                                 <Insets top="10.0" />
                             </HBox.margin></Button>
