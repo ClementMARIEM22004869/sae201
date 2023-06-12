@@ -117,7 +117,7 @@ public class scene3Controller {
         }
     }
     public void lireDonnees() {
-        String csvFile = "src/main/resources/sae201/sae/donne.csv";
+        String csvFile = "src/main/resources/sae201/sae/donnee.csv";
         //ligne actuelle
         String line;
         boolean isFirstLine = true;

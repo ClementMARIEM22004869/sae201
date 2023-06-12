@@ -86,7 +86,7 @@ public class HelloController {
     @FXML
     //lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans.
     public void lireDonnees() {
-        String csvFile = "src/main/resources/sae201/sae/donne.csv";
+        String csvFile = "src/main/resources/sae201/sae/donnee.csv";
         //ligne actuelle
         String line;
         boolean isFirstLine = true;
@@ -145,16 +145,16 @@ public class HelloController {
         // Récupérer les valeurs saisies par l'utilisateur (prend en compte la casse)
         String dateSelectionnee = (date.getText() != null && !date.getText().isEmpty()) ? date.getText().replace("/", "-") : null;
         String date2Selectionnee = (date2.getText() != null && !date2.getText().isEmpty()) ? date2.getText().replace("/", "-") : null;
-
-
         String localisationSelectionnee = (selecteurLoc.getValue() != null) ? selecteurLoc.getValue().toString() : null;
         String intensiteSelectionnee = intensite.getText().toUpperCase();
         //parcours des données et récupération des bonnes
         for (String[] valeurs : donnees) {
             String dateString = valeurs[1].replace("/","-");
             LocalDate dateValeur = null;
+            //si la date est du bon format
             try {
                 dateValeur = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                // si la date est du mauvais format
             } catch (DateTimeParseException e) {
                 System.out.println("Erreur de format de date : " + dateString);
             }
@@ -163,22 +163,25 @@ public class HelloController {
             if (dateSelectionnee != null && date2Selectionnee != null && dateValeur!= null) {
                 LocalDate parsedDateSelectionnee = null;
                 LocalDate parsedDate2Selectionnee = null;
+                //si la date selectionnee par l'utilisateur est bonne
                 try {
                     parsedDateSelectionnee = LocalDate.parse(dateSelectionnee);
                     parsedDate2Selectionnee = LocalDate.parse(date2Selectionnee);
+                    //si la date selectionnee par l'utilisateur n'est pas bonne
                 } catch (DateTimeParseException ex) {
                     System.out.println("Erreur de format de date sélectionnée");
                     continue;
                 }
-
+                //on récupère toutes les valeurs entre les deux dates selectionné
                 if (dateValeur.isAfter(parsedDate2Selectionnee) && dateValeur.isBefore(parsedDateSelectionnee)) {
-                    if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, intensiteSelectionnee)) {
+                    if (estCompatible(valeurs, localisationSelectionnee, intensiteSelectionnee)) {
                         resultats.add(valeurs);
                     }
                 }
             }
+            //si aucune date n'est selectionné
             if (dateSelectionnee == null && date2Selectionnee == null) {
-                if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, intensiteSelectionnee)) {
+                if (estCompatible(valeurs, localisationSelectionnee, intensiteSelectionnee)) {
                     resultats.add(valeurs);
                 }
             }
@@ -219,7 +222,7 @@ public class HelloController {
     }
     //fonction pour vérifier si les valeurs sont compatibles avec les entrées utilisateur
 //on vérifie pour chaque entrée si la valeur est compatible si une des valeurs n'est pas compatible on renvoie false.
-    private boolean estCompatible(String[] valeurs, String dateSelectionnee , String localisation, String intensite) {
+    private boolean estCompatible(String[] valeurs, String localisation, String intensite) {
         // Vérifier la compatibilité avec la localisation
         if (localisation != null && !localisation.isEmpty()) {
             String valeurLocalisation = valeurs[4];
