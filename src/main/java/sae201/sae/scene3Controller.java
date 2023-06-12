@@ -200,7 +200,6 @@ public class scene3Controller {
         //après avoir toutes les bonnes valeurs, on affiche les points sur la carte
         affichPointCarte();
         return resultats;
-
     }
 
     /**
