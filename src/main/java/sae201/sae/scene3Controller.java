@@ -195,6 +195,7 @@ public class scene3Controller {
                 }
             }
         }
+        affichPointCarte();
         return resultats;
 
     }
