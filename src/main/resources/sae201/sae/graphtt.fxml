@@ -57,13 +57,15 @@
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="30.0" style="-fx-background-color: #279af1;">
                     <children>
-                        <Label text="Date">
-                            <graphic>
-                                <DatePicker fx:id="date" />
-                            </graphic></Label>
+                        <Label prefHeight="16.0" prefWidth="142.0" text="Date (YYYY/MM/DD)">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin></Label>
+                  <TextField prefHeight="24.0" prefWidth="114.0" promptText="De" />
+                  <TextField prefHeight="24.0" prefWidth="114.0" promptText="À" />
                         <Label text="Localisation">
                      <graphic>
-                        <ComboBox fx:id="selecteurLoc" prefWidth="150.0" />
+                        <ComboBox fx:id="selecteurLoc" prefHeight="24.0" prefWidth="111.0" />
                      </graphic>
                         </Label>
                         <Label text="Intensité">

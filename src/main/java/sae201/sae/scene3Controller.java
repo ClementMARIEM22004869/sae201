@@ -23,7 +23,9 @@ import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.*;
 import java.io.IOException;
 import java.net.URL;
@@ -73,13 +75,15 @@ public class scene3Controller {
     @FXML
     private TableColumn<String[], String> longitude;
     @FXML
-    private DatePicker date;
+    private TextField date;
     @FXML
     private TextField localisation;
     @FXML
     private TextField nom;
     @FXML
     private TextField intensite;
+    @FXML
+    private TextField date2;
     private List<String[]> resultats = new ArrayList<String[]>();
     @FXML
     private Button fenetre0;
@@ -151,17 +155,46 @@ public class scene3Controller {
         lireDonnees();
         resultats.clear();//on clear l'ancien tableau
         // Récupérer les valeurs saisies par l'utilisateur (prend en compte la casse)
-        String dateSelectionnee = (date.getValue() != null) ? date.getValue().format(DateTimeFormatter.ofPattern("yyyy/MM/dd")) : null;
+        String dateSelectionnee = (date.getText() != null && !date.getText().isEmpty()) ? date.getText().replace("/", "-") : null;
+        String date2Selectionnee = (date2.getText() != null && !date2.getText().isEmpty()) ? date2.getText().replace("/", "-") : null;
+
+
         String localisationSelectionnee = (selecteurLoc.getValue() != null) ? selecteurLoc.getValue().toString() : null;
         String intensiteSelectionnee = intensite.getText().toUpperCase();
         //parcours des données et récupération des bonnes
         for (String[] valeurs : donnees) {
-            if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, intensiteSelectionnee)) {
-                resultats.add(valeurs);
-                this.resultats.add(valeurs);
+            String dateString = valeurs[1].replace("/","-");
+            LocalDate dateValeur = null;
+            try {
+                dateValeur = LocalDate.parse(dateString, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+            } catch (DateTimeParseException e) {
+                System.out.println("Erreur de format de date : " + dateString);
+            }
+
+            // Vérifier si la date est comprise entre dateSelectionnee et date2Selectionnee
+            if (dateSelectionnee != null && date2Selectionnee != null && dateValeur!= null) {
+                LocalDate parsedDateSelectionnee = null;
+                LocalDate parsedDate2Selectionnee = null;
+                try {
+                    parsedDateSelectionnee = LocalDate.parse(dateSelectionnee);
+                    parsedDate2Selectionnee = LocalDate.parse(date2Selectionnee);
+                } catch (DateTimeParseException ex) {
+                    System.out.println("Erreur de format de date sélectionnée");
+                    continue;
+                }
+
+                if (dateValeur.isAfter(parsedDate2Selectionnee) && dateValeur.isBefore(parsedDateSelectionnee)) {
+                    if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, intensiteSelectionnee)) {
+                        resultats.add(valeurs);
+                    }
+                }
+            }
+            if (dateSelectionnee == null && date2Selectionnee == null) {
+                if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, intensiteSelectionnee)) {
+                    resultats.add(valeurs);
+                }
             }
         }
-        affichPointCarte();
         return resultats;
 
     }

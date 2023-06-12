@@ -138,9 +138,9 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="30.0" style="-fx-background-color: #279af1;">
                <children>
-                  <TextField fx:id="date2" promptText="De" />
-                  <TextField fx:id="date" promptText="À" />
-                  <Label text="Date" />
+                  <Label prefHeight="16.0" prefWidth="142.0" text="Date (YYYY/MM/DD)" />
+                  <TextField fx:id="date2" prefHeight="24.0" prefWidth="106.0" promptText="De" />
+                  <TextField fx:id="date" prefHeight="24.0" prefWidth="115.0" promptText="À" />
                   <Label text="Localisation">
                      <graphic>
                         <ComboBox fx:id="selecteurLoc" prefWidth="150.0" />
