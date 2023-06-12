@@ -41,7 +41,7 @@
                     <children>
                         <Button fx:id="fenetre0" mnemonicParsing="false" onAction="#fenetre0c" style="-fx-background-color: #279af1;" text="Retour" textFill="WHITE" />
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="78.0" text=" Filtrer par" textFill="WHITE" />
-                        <Button fx:id="refresh" mnemonicParsing="false" onAction="#refreshc" style="-fx-background-color: #279af1;" text="Réinitialiser">
+                        <Button fx:id="refresh" mnemonicParsing="false" onAction="#refreshc" style="-fx-background-color: #EEEEEE;" text="Réinitialiser">
                             <graphic>
                                 <ImageView id="Reload" accessibleRole="BUTTON" fitHeight="26.0" fitWidth="29.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
