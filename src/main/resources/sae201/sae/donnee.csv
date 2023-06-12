@@ -1,4 +1,4 @@
-kIdentifiant,"Date (AAAA/MM/JJ)",Heure,Nom,"Région épicentrale",Choc,"X RGF93/L93","Y RGF93/L93","Latitude en WGS 84","Longitude en WGS 84","Intensité épicentrale","Qualité intensité épicentrale"
+Identifiant,"Date (AAAA/MM/JJ)",Heure,Nom,"Région épicentrale",Choc,"X RGF93/L93","Y RGF93/L93","Latitude en WGS 84","Longitude en WGS 84","Intensité épicentrale","Qualité intensité épicentrale"
 590003,1000/03/29,,"HAINAUT (CHARLEROI ?)",BELGIQUE,,812500.08,7045867.80,50.50,4.58,6,ARBITRAIRE
 160001,1014/,,"ANGOUMOIS (ANGOULEME)",CHARENTES,,478075.43,6509611.52,45.65,0.15,7,"INFORMATION ISOLÉE"
 580001,1079/07/17,,"PUISAYE ?",NIVERNAIS,,716280.87,6722202.41,47.60,3.22,6,ARBITRAIRE

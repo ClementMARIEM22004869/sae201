@@ -116,6 +116,7 @@ public class scene3Controller {
             }
         }
     }
+    //lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans
     public void lireDonnees() {
         String csvFile = "src/main/resources/sae201/sae/donnee.csv";
         //ligne actuelle
@@ -124,7 +125,7 @@ public class scene3Controller {
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) {
-                // Ignorer la première ligne (en têtes des colonnes)
+                // Ignorer la première ligne (en-têtes des colonnes)
                 if (isFirstLine) {
                     isFirstLine = false;
                     continue;
@@ -150,6 +151,7 @@ public class scene3Controller {
             e.printStackTrace();
         }
     }
+    //fonction pour rechercher et filtrer
     @FXML
     public List<String[]> rechercher() {
         lireDonnees();
@@ -182,23 +184,27 @@ public class scene3Controller {
                     System.out.println("Erreur de format de date sélectionnée");
                     continue;
                 }
-
+                //on récupère toutes les valeurs entre les deux dates selectionné
                 if (dateValeur.isAfter(parsedDate2Selectionnee) && dateValeur.isBefore(parsedDateSelectionnee)) {
                     if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, intensiteSelectionnee)) {
                         resultats.add(valeurs);
                     }
                 }
             }
+            //si aucune date n'est selectionné
             if (dateSelectionnee == null && date2Selectionnee == null) {
                 if (estCompatible(valeurs, dateSelectionnee, localisationSelectionnee, intensiteSelectionnee)) {
                     resultats.add(valeurs);
                 }
             }
         }
+        //après avoir toutes les bonnes valeurs, on affiche les points sur la carte
         affichPointCarte();
         return resultats;
 
     }
+    //fonction pour vérifier si les valeurs sont compatibles avec les entrées utilisateur
+    //on vérifie pour chaque entrée si la valeur est compatible si une des valeurs n'est pas compatible on renvoie false.
     private boolean estCompatible(String[] valeurs, String dateSelectionnee , String localisation, String intensite) {
         // Vérifier la compatibilité avec la localisation
         if (localisation != null && !localisation.isEmpty()) {
@@ -207,6 +213,7 @@ public class scene3Controller {
                 return false; // L'entrée n'est pas compatible avec la localisation
             }
         }
+        //vérifier la compatibilité avec l'intensité
         if (intensite != null && !intensite.isEmpty()) {
             String valeurIntensite = valeurs[10];
             if (!valeurIntensite.contains(intensite)) {
@@ -215,14 +222,14 @@ public class scene3Controller {
         }
         return true; // L'entrée est compatible avec toutes les valeurs saisies par l'utilisateur
     }
-
+//afficher les points sur la carte
     public void affichPointCarte(){
         map.removeLayer(mapLayer);
         for (String[] rslt : resultats){
+            //on vérifie si la 6e valeur du tableau n'est pas vide (
             if (rslt[6]!= ""){
-                double x = Double.parseDouble(rslt[8]);
-                double y = Double.parseDouble(rslt[9]);
-                MapPoint pointMap = new MapPoint(x, y);
+                //on récupère le x (stocké dans la 8e valeur du tableau) et le y (stocké dans la 9e valeur du tableau)
+                MapPoint pointMap = new MapPoint(Double.parseDouble(rslt[8]), Double.parseDouble(rslt[9]));
                 CustomCircleMarkerLayer customCircleMarkerLayer = new CustomCircleMarkerLayer(pointMap);
                 map.addLayer(customCircleMarkerLayer);
             }

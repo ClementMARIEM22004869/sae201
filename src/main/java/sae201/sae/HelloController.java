@@ -84,7 +84,7 @@ public class HelloController {
         mettreDansSelecteurLoc();
     }
     @FXML
-    //lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans.
+    //lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans
     public void lireDonnees() {
         String csvFile = "src/main/resources/sae201/sae/donnee.csv";
         //ligne actuelle
@@ -221,7 +221,7 @@ public class HelloController {
         System.out.println("Séisme maximum : " + maxMagnitude);
     }
     //fonction pour vérifier si les valeurs sont compatibles avec les entrées utilisateur
-//on vérifie pour chaque entrée si la valeur est compatible si une des valeurs n'est pas compatible on renvoie false.
+    //on vérifie pour chaque entrée si la valeur est compatible si une des valeurs n'est pas compatible on renvoie false.
     private boolean estCompatible(String[] valeurs, String localisation, String intensite) {
         // Vérifier la compatibilité avec la localisation
         if (localisation != null && !localisation.isEmpty()) {
@@ -230,6 +230,7 @@ public class HelloController {
                 return false; // L'entrée n'est pas compatible avec la localisation
             }
         }
+        //vérifier la compatibilité avec l'intensité
         if (intensite != null && !intensite.isEmpty()) {
             String valeurIntensite = valeurs[10];
             if (!valeurIntensite.contains(intensite)) {
@@ -304,7 +305,7 @@ public class HelloController {
             e.printStackTrace();
         }
     }
-
+    //fonction pour rafraichir
     @FXML
     public void refreshc (ActionEvent event) {
         try {
