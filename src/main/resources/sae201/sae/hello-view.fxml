@@ -29,7 +29,6 @@
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor></Button>
-                  <Button mnemonicParsing="false" onAction="#stats" text="Button" />
                </children>
             </HBox>
             <TableView fx:id="tableView" nodeOrientation="LEFT_TO_RIGHT" prefHeight="686.0" prefWidth="800.0">

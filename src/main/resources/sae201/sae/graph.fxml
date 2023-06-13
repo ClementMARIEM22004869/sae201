@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.*?>
-<?import javafx.scene.chart.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -16,98 +16,101 @@
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="51.0" prefWidth="800.0" spacing="20.0">
                     <children>
-                        <Button fx:id="fenetre0" mnemonicParsing="false" onAction="#fenetre0c" style="-fx-background-color: #279af1;" text="Retour">
-                            <HBox.margin>
-                                <Insets top="10.0" />
-                            </HBox.margin></Button>
-                        <Button fx:id="fenetre2" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#fenetre2c" style="-fx-background-color: #279af1;" text="Carte">
-                            <HBox.margin>
-                                <Insets top="10.0" />
-                            </HBox.margin></Button>
-                        <Button id="recharge" mnemonicParsing="false" text="Recherche">
-                            <HBox.margin>
-                                <Insets top="10.0" />
-                            </HBox.margin></Button>
+                        <Button mnemonicParsing="false" onAction="#rechercher" text="Recherche">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor></Button>
                     </children>
                 </HBox>
-                <GridPane alignment="CENTER">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="300.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="200.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                    <children>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+            <HBox fx:id="hboxGr" prefHeight="352.0" prefWidth="800.0" />
+            <VBox prefHeight="328.0" prefWidth="722.0">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                              <LineChart title="sdfs">
-                                  <xAxis>
-                                      <CategoryAxis label="hvgv" side="BOTTOM" />
-                                  </xAxis>
-                                  <yAxis>
-                                      <NumberAxis side="LEFT" />
-                                  </yAxis>
-                              </LineChart>
+                        <Label prefHeight="100.0" prefWidth="242.0" text="Nombre de séismes:" textFill="#453f78">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="nbseismes" prefHeight="100.0" prefWidth="123.0" textFill="#453f78">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
                      </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+                  </HBox>
+                  <Separator prefWidth="200.0" style="-fx-background-color: #453f78;" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <PieChart fx:id="camembert" title="aze" />
+                        <Label prefHeight="100.0" prefWidth="295.0" text="Intensité la plus basse:" textFill="#453f78">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="intbasse" prefHeight="100.0" prefWidth="80.0" textFill="#453f78">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <Separator orientation="VERTICAL" prefHeight="200.0" style="-fx-background-color: #453f78;" />
+                        <Label prefHeight="100.0" prefWidth="286.0" text="Intensité la plus haute:" textFill="#453f78">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                        </Label>
+                        <Label fx:id="inthaute" layoutX="271.0" layoutY="10.0" prefHeight="100.0" prefWidth="114.0" textFill="#453f78">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
                      </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+                  </HBox>
+                  <Separator prefWidth="200.0" style="-fx-background-color: #453f78;" />
+                  <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                              <BarChart title="ara">
-                                  <xAxis>
-                                      <CategoryAxis side="BOTTOM" />
-                                  </xAxis>
-                                  <yAxis>
-                                      <NumberAxis side="LEFT" />
-                                  </yAxis>
-                              </BarChart>
+                        <Label prefHeight="100.0" prefWidth="225.0" text="Intensité moyenne:" textFill="#453f78">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="intmoy" prefHeight="100.0" prefWidth="143.0" textFill="#453f78">
+                           <font>
+                              <Font size="27.0" />
+                           </font>
+                        </Label>
                      </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                     <children>
-                              <StackedBarChart title="trer">
-                                  <xAxis>
-                                      <CategoryAxis side="BOTTOM" />
-                                  </xAxis>
-                                  <yAxis>
-                                      <NumberAxis side="LEFT" />
-                                  </yAxis>
-                              </StackedBarChart>
-                     </children>
-                  </VBox>
-                    </children>
-                    <padding>
-                        <Insets top="20.0" />
-                    </padding>
-                </GridPane>
-            </children>
-        </VBox>
+                  </HBox>
+               </children>
+            </VBox>
+            </children></VBox>
     </center>
     <top>
-        <VBox prefHeight="109.0" prefWidth="600.0" style="-fx-background-color: #fbfdfa;" BorderPane.alignment="CENTER">
+        <VBox prefHeight="109.0" prefWidth="600.0" styleClass="#fbfdfa" BorderPane.alignment="CENTER">
             <children>
-                <HBox alignment="CENTER" prefHeight="43.0" prefWidth="600.0" spacing="30.0">
+                <HBox alignment="CENTER" prefHeight="26.0" prefWidth="746.0" spacing="30.0" style="-fx-background-color: #fbfdfa;">
                     <children>
-                        <ImageView fx:id="image1" fitHeight="49.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="image1" fitHeight="69.0" fitWidth="124.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@SisAix.png" />
                             </image></ImageView>
-                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="465.0" text="" underline="true">
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="59.0" prefWidth="499.0" style="-fx-background-color: #fbfdfa;" text="" underline="true">
                             <font>
                                 <Font name="Bangla MN" size="32.0" />
                             </font>
                             <HBox.margin>
-                                <Insets left="20.0" />
+                                <Insets />
                             </HBox.margin>
+                            <padding>
+                                <Insets left="50.0" />
+                            </padding>
                         </Label>
-                        <ImageView fx:id="image2" fitHeight="49.0" fitWidth="134.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="image2" fitHeight="58.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@Univ_Aix-Marseille_-_IUT.png" />
                             </image></ImageView>
@@ -115,6 +118,7 @@
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="19.0" prefWidth="600.0" style="-fx-background-color: #453f78;">
                     <children>
+                  <Button fx:id="fenetre0" mnemonicParsing="false" onAction="#fenetre0c" style="-fx-background-color: #279af1;" text="Retour" textFill="WHITE" />
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="37.0" prefWidth="78.0" text=" Filtrer par" textFill="WHITE" />
                         <Button fx:id="refresh" mnemonicParsing="false" onAction="#refreshc" text="Réinitialiser">
                             <graphic>
@@ -122,6 +126,9 @@
                                     <image>
                                         <Image url="@Refresh.png" />
                                     </image>
+                                    <cursor>
+                                        <Cursor fx:constant="WAIT" />
+                                    </cursor>
                                 </ImageView>
                             </graphic>
                         </Button>
@@ -129,24 +136,16 @@
                 </HBox>
                 <HBox alignment="CENTER" prefHeight="49.0" prefWidth="600.0" spacing="30.0" style="-fx-background-color: #279af1;">
                     <children>
-                        <Label text="Date">
-                            <graphic>
-                                <TextField id="date" fx:id="date" prefHeight="24.0" prefWidth="56.0" />
-                            </graphic>
-                        </Label>
+                        <Label prefHeight="16.0" prefWidth="142.0" text="Date (YYYY/MM/DD)" />
+                        <TextField fx:id="date2" prefHeight="24.0" prefWidth="106.0" promptText="De" />
+                        <TextField fx:id="date" prefHeight="24.0" prefWidth="115.0" promptText="À" />
                         <Label text="Localisation">
                             <graphic>
-                                <TextField fx:id="localisation" prefHeight="24.0" prefWidth="61.0" />
-                            </graphic>
-                        </Label>
-                        <Label text="Coordonnées">
-                            <graphic>
-                                <TextField fx:id="coordonnée" prefHeight="24.0" prefWidth="58.0" />
-                            </graphic>
-                        </Label>
+                                <ComboBox fx:id="selecteurLoc" prefWidth="150.0" />
+                            </graphic></Label>
                         <Label text="Intensité">
                             <graphic>
-                                <TextField fx:id="intensité" prefHeight="24.0" prefWidth="42.0" />
+                                <TextField fx:id="intensite" prefHeight="24.0" prefWidth="42.0" />
                             </graphic>
                         </Label>
                     </children>
