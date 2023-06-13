@@ -110,10 +110,6 @@ public class HelloController {
 
                 //on ajoute les valeurs dans le tableau de String
                 donnees.add(valeurs);
-
-                for (String v : valeurs) {
-                    System.out.println(v);
-                }
             }
         } catch (IOException e) {
             e.printStackTrace();

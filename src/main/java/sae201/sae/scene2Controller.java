@@ -58,16 +58,38 @@ public class scene2Controller {
     private Label intmoy;
     @FXML
     private HBox hboxGr;
+    @FXML
+    private PieChart pieChart;
     public void initialize(){
         lireDonnees();
         mettreDansSelecteurLoc();
 
     }
+    public void pieChart(){
+// compter le nombre d'occurrences de chaque villes
+        Map<String, Integer> comptage = new HashMap<>();
+        for (String[] resultat : resultats) {
+            String ville = resultat[4];
+            comptage.put(ville, comptage.getOrDefault(ville, 0) + 1);
+        }
+
+// créer les objets PieChart.Data à partir des résultats
+        ObservableList<PieChart.Data> donnees = FXCollections.observableArrayList();
+        for (Map.Entry<String, Integer> entry : comptage.entrySet()) {
+            PieChart.Data section = new PieChart.Data(entry.getKey(), entry.getValue());
+            donnees.add(section);
+        }
+
+// créer le PieChart et ajouter les données
+        PieChart pieChart = new PieChart(donnees);
+        pieChart.setTitle("Répartition du nombre de séismes par ville");
+        pieChart.setPrefSize(800, 800);
+        hboxGr.getChildren().add(pieChart);
+    }
     @FXML
     public void graph(){
         CategoryAxis xAxis = new CategoryAxis();
         xAxis.setLabel("Intensité");
-
         NumberAxis yAxis = new NumberAxis();
         yAxis.setLabel("Nombre de séismes");
         BarChart<String, Number> barChart = new BarChart<String, Number>(xAxis, yAxis);
@@ -76,6 +98,7 @@ public class scene2Controller {
             for (String[] rslt : resultats){
                 temp.add(Double.parseDouble(rslt[10]));
             }
+            //une map pour ajouter les intensités ainsi que le nombre d'occurence de chaque intensité
             Map<Double, Integer> intensiteFrequences = new HashMap<>();
 
             // Compter les fréquences des intensités
@@ -87,7 +110,6 @@ public class scene2Controller {
             for (Map.Entry<Double, Integer> entry : intensiteFrequences.entrySet()) {
                 Double intensite = entry.getKey();
                 Integer frequence = entry.getValue();
-                System.out.println(intensite+ " "+ frequence);
                 series.getData().add(new XYChart.Data<>(String.valueOf(intensite), frequence));
             }
 
@@ -123,9 +145,6 @@ public class scene2Controller {
                 //on ajoute les valeurs dans le tableau de String
                 donnees.add(valeurs);
 
-                for (String v : valeurs) {
-                    System.out.println(v);
-                }
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -183,6 +202,7 @@ public class scene2Controller {
         stats();
         moyenne();
         graph();
+        pieChart();
         return resultats;
 
     }
@@ -234,8 +254,6 @@ public class scene2Controller {
         }
         intbasse.setText(String.valueOf(minMagnitude));
         inthaute.setText(String.valueOf(maxMagnitude));
-        System.out.println("Séisme minimum : " + minMagnitude);
-        System.out.println("Séisme maximum : " + maxMagnitude);
     }
 
     //calculer la moyenne
@@ -251,7 +269,6 @@ public class scene2Controller {
                 if (!magnitudeString.isEmpty()) {
                     try {
                         double magnitude = Double.parseDouble(magnitudeString);
-                        System.out.println("Magnitude du séisme : " + magnitude);
                         numérateur += magnitude;
                     } catch (NumberFormatException e) {
                         System.out.println("La magnitude du séisme n'est pas un nombre valide : " + magnitudeString);
@@ -268,7 +285,6 @@ public class scene2Controller {
 
         double moyenne = numérateur / dénominateur;
         intmoy.setText(String.valueOf(moyenne));
-        System.out.println("Moyenne sur l'échelle Richter : " + moyenne);
     }
 
     /**
