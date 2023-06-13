@@ -1,17 +1,14 @@
 package sae201.sae;
 
-import com.gluonhq.maps.MapPoint;
-import com.gluonhq.maps.MapView;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import org.w3c.dom.Text;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -19,26 +16,15 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.stage.Stage;
-
-
-import java.util.ArrayList;
-import java.util.Locale;
 
 public class HelloController {
     @FXML
     private Label welcomeText;
     @FXML
     private Button btn;
-
     @FXML
     //le tableau de String
     private List<String[]> donnees = new ArrayList<String[]>();
@@ -78,13 +64,26 @@ public class HelloController {
     private TextField nom;
     @FXML
     private TextField intensite;
+    @FXML
+    private Button fenetre1;
+    @FXML
+    private Button fenetre2;
+    @FXML
+    private Button refresh;
     private List<String[]> resultats = new ArrayList<String[]>();
+
+    /**
+     * Initialise l'application.
+     * Lit les données à partir d'un fichier CSV et remplit le sélecteur avec les localisations.
+     */
     public void initialize(){
         lireDonnees();
         mettreDansSelecteurLoc();
     }
+    /**
+     * lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans
+     */
     @FXML
-    //lire les données du csv et les ranger dans un tableau de String, chaque valeur est rangé dedans
     public void lireDonnees() {
         String csvFile = "src/main/resources/sae201/sae/donnee.csv";
         //ligne actuelle
@@ -115,7 +114,10 @@ public class HelloController {
             e.printStackTrace();
         }
     }
-    //afficher les données dans les colones correspondantes
+    /**
+     * Afficher les données dans les colones correspondantes
+     * @param resultat La liste de tableaux de chaînes de caractères contenant les données à afficher.
+     */
     @FXML
     public void affichDonnee(List<String[]> resultat) {
         tableView.getItems().clear();//on clear l'ancienne entrée.
@@ -133,8 +135,10 @@ public class HelloController {
         //on ajoute les données dans le TableView
         tableView.getItems().addAll(resultat);
     }
-
-    //fonction pour rechercher et filtrer
+    /**
+     * Recherche et filtre les données en fonction de l'entrée de l'utilisateur.
+     * @return La liste filtrée de tableaux de chaînes de caractères.
+     */
     public List<String[]> rechercher() {
         lireDonnees();
         resultats.clear();//on clear l'ancien tableau
@@ -187,7 +191,9 @@ public class HelloController {
         return resultats;
 
     }
-    //Mettre les localisation dans le ComboBox
+    /**
+     * Remplit le sélecteur avec les localisations uniques à partir des données dans le ComboBox.
+     */
     public void mettreDansSelecteurLoc(){
         for (String[] dns : donnees){
             if (!selecteurLoc.getItems().toString().contains(dns[4])){
@@ -195,8 +201,13 @@ public class HelloController {
             }
         }
     }
-    //fonction pour vérifier si les valeurs sont compatibles avec les entrées utilisateur
-    //on vérifie pour chaque entrée si la valeur est compatible si une des valeurs n'est pas compatible on renvoie false.
+    /**
+     * Vérifie si les valeurs sont compatibles avec l'entrée de l'utilisateur.
+     * @param valeurs Le tableau de valeurs à vérifier.
+     * @param localisation La localisation sélectionnée.
+     * @param intensite L'intensité sélectionnée.
+     * @return True si les valeurs sont compatibles, false sinon.
+     */
     private boolean estCompatible(String[] valeurs, String localisation, String intensite) {
         // Vérifier la compatibilité avec la localisation
         if (localisation != null && !localisation.isEmpty()) {
@@ -214,18 +225,10 @@ public class HelloController {
         }
         return true; // L'entrée est compatible avec toutes les valeurs saisies par l'utilisateur
     }
-
-
-
-    @FXML
-    private Button fenetre1;
-
-    @FXML
-    private Button fenetre2;
-
-    @FXML
-    private Button refresh;
-
+    /**
+     * Bascule vers la fenêtre 1.
+     * @param event L'événement qui a déclenché l'action.
+     */
     @FXML
     public void fenetre1c (ActionEvent event) {
         try {
@@ -238,7 +241,10 @@ public class HelloController {
             e.printStackTrace();
         }
     }
-
+    /**
+     * Bascule vers la fenêtre 2.
+     * @param event L'événement qui a déclenché l'action.
+     */
     @FXML
     public void fenetre2c (ActionEvent event) {
         try {
@@ -251,7 +257,10 @@ public class HelloController {
             e.printStackTrace();
         }
     }
-    //fonction pour rafraichir
+    /**
+     * Actualise la vue.
+     * @param event L'événement qui a déclenché l'action.
+     */
     @FXML
     public void refreshc (ActionEvent event) {
         try {
